@@ -1,7 +1,9 @@
-# migration <- read.csv2("/Users/herbishtini/Documents/R-development/Projekt/data/germany-migration.csv",
+#
+
+# migration <- read.csv2("data/germany-migration.csv",
 #                       skip=3, header = TRUE, stringsAsFactors = FALSE)
 
-migration <- import("/Users/herbishtini/Documents/R-development/Projekt/data/germany-migration.csv", 
+migration <- import("data/migration.csv", 
                     encoding = "UTF-8", 
                     quote="")
 
@@ -9,7 +11,7 @@ migration <- import("/Users/herbishtini/Documents/R-development/Projekt/data/ger
 netMigrationTotal <- migration[c(5, 8:28), c(1, 8:10)]
 
 #Cleaning
-netMigrationTotalFormat <- header.true(netMigrationTotal)
+netMigrationTotalFormat <- setXY(netMigrationTotal)
 
 # Transforming values from char to number
 netMigrationTotalFormat$Insgesamt <- as.numeric(as.character(netMigrationTotalFormat$Insgesamt))

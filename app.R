@@ -8,7 +8,8 @@ library(tidyverse)
 
 options( scipen = 999 )
 
-###
-source("/Users/herbishtini/Documents/R-development/Projekt/utilities.R")
+source("utilities.R")
 ### 
-source("/Users/herbishtini/Documents/R-development/Projekt/fertility-rate.R")
+source("fertility-rate.R")
+source("employment-rate.R")
+
