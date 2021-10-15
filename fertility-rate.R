@@ -5,9 +5,6 @@ library(tidyverse)
 options( scipen = 999 )
 
 source("utilities.R")
-#
-# migration <- read.csv2("data/germany-migration.csv",
-#                       skip=3, header = TRUE, stringsAsFactors = FALSE)
 
 migration <- import("data/migration.csv", 
                     encoding = "UTF-8", 
@@ -23,8 +20,9 @@ netMigrationTotalFormat$Insgesamt <- as.numeric(as.character(netMigrationTotalFo
 
 #Plot
 ggplot(netMigrationTotalFormat) +
-  geom_line(mapping=aes(x="Erwerbspersonen (15 Jahre und alter)", y=Insgesamt, group = 1),
-       stat="identity") + 
-       labs(title="Line chart", 
-       subtitle="Erwerbspersonen (15 Jahre und alter)", 
-       caption="source: destatis")
+  geom_line(mapping=aes(x=years, y=Insgesamt, group = 1),
+            stat="identity") + 
+            labs(title="Bar Chart", 
+                 subtitle="Net migration per year", 
+                 caption="source: destatis") + 
+            theme(axis.text.x = element_text(angle=65, vjust=0.6))
