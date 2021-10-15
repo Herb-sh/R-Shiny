@@ -2,23 +2,20 @@
 library(rio)
 library(tidyverse)
 #
-options( scipen = 999 )
-
 source("utilities.R")
 
 employment <- import("data/employment-rate.csv", 
                     encoding = "UTF-8", 
                     quote="")
 
-# Getting only a part of the whole document
+#Getting only a part of the whole document
 employmenClean <- employment[c(3, 4), c(2, 4:34)]
 
 #Cleaning
-employmenCleanFormat <- setXYHeaders(employmenClean)
+employmenCleanFormat <- setLabHeaders(employmenClean, -1, -1)
+employmenCleanFormat <- employmenCleanFormat %>% gather(Key, Value)
 
-#
-
-
-#
+#Plot
 ggplot(employmenCleanFormat) +
-geom_line(mapping=aes(y="Erwerbspersonen (15 Jahre und alter)", group = 1))
+geom_line(mapping=aes(y=Value, x=Key), group=1) +
+  theme(axis.text.x = element_text(angle=65, vjust=0.6))
