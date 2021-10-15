@@ -22,7 +22,9 @@ netMigrationTotalFormat$Insgesamt <- as.numeric(as.character(netMigrationTotalFo
 ggplot(netMigrationTotalFormat) +
   geom_line(mapping=aes(x=years, y=Insgesamt, group = 1),
             stat="identity") + 
-            labs(title="Bar Chart", 
-                 subtitle="Net migration per year", 
+            labs(title="Fertilitätsrate", 
+                 subtitle="Nettomigration pro Jahr", 
+                 y="Nettomigration",
+                 x="Jahre",
                  caption="source: destatis") + 
             theme(axis.text.x = element_text(angle=65, vjust=0.6))
