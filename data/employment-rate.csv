@@ -2,25 +2,25 @@ GENESIS-Tabelle: 99911-0002
 Internationale Indikatoren - Arbeitsmarkt: Staaten, Jahre;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Internationale Indikatoren;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;1990;1991;1992;1993;1994;1995;1996;1997;1998;1999;2000;2001;2002;2003;2004;2005;2006;2007;2008;2009;2010;2011;2012;2013;2014;2015;2016;2017;2018;2019;2020
-Deutschland;Erwerbspersonen (15 Jahre und älter);1000;37749;39794;39711;39781;39855;40038;40300;40536;40819;40668;39898;39937;40024;40240;40168;40861;41187;41419;41396;41477;41563;42042;42141;42528;42723;42792;43066;43290;43675;43779;43816
+Deutschland;Erwerbspersonen (15 Jahre und alter);1000;37749;39794;39711;39781;39855;40038;40300;40536;40819;40668;39898;39937;40024;40240;40168;40861;41187;41419;41396;41477;41563;42042;42141;42528;42723;42792;43066;43290;43675;43779;43816
 Deutschland;Erwerbsquote;Prozent;55,9;59,6;59,1;58,8;58,5;58,5;58,6;58,8;59,1;58,8;58,1;58,0;57,9;57,9;57,6;58,5;58,9;59,2;59,2;59,4;59,4;60,0;60,0;60,3;60,4;60,3;60,5;60,5;60,8;61,3;60,6
-Deutschland;Selbstständigenquote;Prozent;11,0;9,7;10,0;10,3;10,6;10,7;10,6;10,9;11,0;10,8;10,9;11,2;11,1;11,4;12,1;12,4;12,2;12,0;11,7;11,6;11,6;11,7;11,6;11,2;11,0;10,8;10,4;10,2;9,9;9,8;9,8
+Deutschland;Selbstst?ndigenquote;Prozent;11,0;9,7;10,0;10,3;10,6;10,7;10,6;10,9;11,0;10,8;10,9;11,2;11,1;11,4;12,1;12,4;12,2;12,0;11,7;11,6;11,6;11,7;11,6;11,2;11,0;10,8;10,4;10,2;9,9;9,8;9,8
 Deutschland;Erwerbslosenquote;Prozent;-;5,3;6,3;7,7;8,7;8,2;8,8;9,9;9,8;8,9;7,9;7,8;8,5;9,8;10,7;11,2;10,3;8,7;7,5;7,7;7,0;5,8;5,4;5,2;5,0;4,6;4,1;3,7;3,4;3,1;4,3
 Deutschland;Langzeiterwerbslosenquote;Prozent;-;31,5;33,2;40,0;43,9;48,3;47,2;49,2;51,5;50,9;50,3;49,6;47,0;49,4;51,1;52,5;55,7;56,0;51,9;44,9;46,8;47,6;45,1;44,4;44,0;43,6;40,8;41,7;...;...;...
 Deutschland;Jugenderwerbslosenquote;Prozent;-;5,5;5,9;7,7;8,9;8,5;9,6;10,8;9,8;9,0;8,6;7,8;9,3;11,1;13,0;15,5;13,8;11,9;10,6;11,2;9,8;8,5;8,0;7,8;7,7;7,2;7,0;6,7;6,2;5,8;...
 Deutschland;Arbeitskosten im Verarbeitenden Gewerbe je Stunde;US $;-;-;-;-;-;-;33,22;29,16;28,92;27,57;25,41;25,31;27,63;34,00;37,72;38,03;39,37;43,50;47,53;45,76;43,84;47,42;45,79;.;.;...;...;...;...;...;...
 __________
 "Quellen:
-- Schlüsselindikatoren zum Arbeitsmarkt, Internationale
+- Schl?sselindikatoren zum Arbeitsmarkt, Internationale
   Arbeitsorganisation (ILO):
-Erwerbspersonen (15 Jahre und älter)
+Erwerbspersonen (15 Jahre und ?lter)
 Erwerbsquote
-Selbstständigenquote
+Selbstst?ndigenquote
 Erwerbslosenquote
 Langzeiterwerbslosenquote
 Jugenderwerbslosenquote
 
 - Statistikamt des amerikanischen Arbeitsministeriums (BLS):
 Arbeitskosten im Verarbeitenden Gewerbe je Stunde"
-© Statistisches Bundesamt (Destatis), 2021
+? Statistisches Bundesamt (Destatis), 2021
 Stand: 13.10.2021 / 23:14:08
