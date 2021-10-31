@@ -4,6 +4,7 @@ install.packages("tidyverse")
 install.packages("shiny")
 install.packages("quantmod")
 install.packages("plotly")
+install.packages("shiny.router")
 
 library(shiny)
 ### 

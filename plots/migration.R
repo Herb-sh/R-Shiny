@@ -23,9 +23,7 @@ plotMigration <- function () {
   p <- ggplot(netMigrationTotalFormat) +
     geom_line(mapping=aes(x=years, y=Insgesamt, group = 1),
               stat="identity") + 
-    labs(title="Nettomigration", 
-         subtitle="Nettomigration pro Jahr", 
-         y="Bevölkerungszahl",
+    labs(y="Bevölkerungszahl",
          x="Jahre",
          caption="source: destatis") + 
     theme(axis.text.x = element_text(angle=65, vjust=0.6))
