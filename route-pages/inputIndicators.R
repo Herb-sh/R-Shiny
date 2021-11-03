@@ -1,5 +1,5 @@
 inputIndicatorsReady <- function(input, output, session, clicks) {
-  output$migration = renderPlot({
+  output$migration = renderPlotly({
     plotMigration()
   })
   
