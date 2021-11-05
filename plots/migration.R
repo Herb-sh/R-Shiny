@@ -34,7 +34,7 @@ plotMigration <- function () {
     geom_segment( aes(x=years, xend=years, y=0, yend=Insgesamt, color = color), size=4, alpha=0.9) +
     scale_colour_identity() +
     theme_light() +
-    labs(y="Bevölkerungszahl",
+    labs(y="Einwanderungszahl",
          x="Jahre",
          caption="source: destatis") +
     theme(
