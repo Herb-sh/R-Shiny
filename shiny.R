@@ -1,10 +1,11 @@
-### Install requred packages
+### Install required packages
 if (!require("rio")) install.packages("rio"); library(rio)
 if (!require("tidyverse")) install.packages("tidyverse"); library(tidyverse)
 if (!require("shiny")) install.packages("shiny"); library(shiny)
 if (!require("quantmod")) install.packages("quantmod"); library(quantmod)
 if (!require("plotly")) install.packages("plotly"); library(plotly)
 if (!require("shiny.router")) install.packages("shiny.router"); library(shiny.router)
+if (!require("zoo")) install.packages('zoo'); library(zoo)
 
 # Plots
 source('plots/migration.R')

@@ -1,4 +1,4 @@
-﻿"LOCATION","Country","SEX","Sex","AGE","Age","TIME","Time","Value","Flag Codes","Flags"
+"CountryCode","Country","GenderCode","Gender","MetricCode","Metric","Year","Year2","Value","Flag Codes","Flags"
 "DEU","Germany","W","Women","TOTAL","Total","1990","1990",41128172,,
 "DEU","Germany","W","Women","TOTAL","Total","1991","1991",41344358,,
 "DEU","Germany","W","Women","TOTAL","Total","1992","1992",41555008,,

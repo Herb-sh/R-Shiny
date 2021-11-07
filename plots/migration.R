@@ -1,6 +1,3 @@
-if (!require("plotly")) install.packages("plotly"); library(plotly)
-if (!require("zoo")) install.packages('zoo'); library(zoo)
-
 ### Import packages
 library(rio)
 library(tidyverse)
