@@ -10,6 +10,7 @@ if (!require("zoo")) install.packages('zoo'); library(zoo)
 # Plots
 source('plots/migration.R')
 source('plots/employment-rate.R')
+source('plots/population-pyramid.R')
 # Routes
 source('route-pages/dashboard.R')
 source('route-pages/inputIndicators.R')

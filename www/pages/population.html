@@ -1,1 +1,25 @@
-Population
+<section class="population-age-group">
+   <div class="card">
+      <div class="card-body">
+         <h5 class="card-title">
+           <span>Bevölkerungsalter Entwicklung</span>
+            <span class="btn-group btn-group-lg pull-right">
+                <button id="start" class="btn btn-primary shiny-bound-input action-button">
+                  <i class="bi bi-play"></i>
+                    Start
+                </button>
+                <button id="pause" class="btn btn-warning shiny-bound-input action-button">
+                  <i class="bi bi-pause"></i>
+                    Pause
+                </button>
+                <button id="reset" class="btn btn-success shiny-bound-input action-button">
+                  <i class="bi bi-arrow-repeat"></i>
+                    Reset
+                </button>
+              </span>
+         </h5>
+          <div class="pull-right current-year">{{textOutput("currentYear", inline = T)}}</div>
+          {{plotlyOutput("populationAgeGroup")}}
+      </div>
+    </div>
+</section>
