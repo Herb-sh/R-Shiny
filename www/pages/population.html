@@ -1,4 +1,29 @@
-<section class="population-age-group">
+<section class="card population-age-range">
+     <!-- Age range -->
+   <div class="card-body">
+         <h5 class="card-title">
+           <span>Bevölkerungsalter Entwicklung</span>
+            <span class="btn-group btn-group-lg pull-right">
+                <button id="startr" class="btn btn-primary shiny-bound-input action-button">
+                  <i class="bi bi-play"></i>
+                    Start
+                </button>
+                <button id="pauser" class="btn btn-warning shiny-bound-input action-button">
+                  <i class="bi bi-pause"></i>
+                    Pause
+                </button>
+                <button id="resetr" class="btn btn-success shiny-bound-input action-button">
+                  <i class="bi bi-arrow-repeat"></i>
+                    Reset
+                </button>
+              </span>
+         </h5>
+          <div class="pull-right current-year">{{textOutput("rangeCurrentYear", inline = T)}}</div>
+          {{plotlyOutput("populationAgeRange")}}
+      </div>
+</section>
+<section class="card population-age-group">
+   <!--  Age group pyramid -->
    <div class="card">
       <div class="card-body">
          <h5 class="card-title">

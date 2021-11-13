@@ -2,42 +2,81 @@ startYear <- 1990
 endYear <- 2020
 
 populationReady <- function(input, output, session, clicks) {
-  rv <- reactiveValues(currentYear = startYear,
+  rvg <- reactiveValues(currentYear = startYear,
                        timer = function() {return(0)},
                        ageGroupPlot = populationAgeGroupPlot(startYear))
   
+  rvr <- reactiveValues(currentYearRange = startYear,
+                       timer = function() {return(0)},
+                       ageRangePlot = populationAgeGroupPlot(startYear))
+  
   observe({
-    print(isolate(rv$currentYear))
-    timer <- rv$timer()
+    print(isolate(rvr$currentYearRange))
+    timer <- rvr$timer()
     
-    if (isolate(rv$currentYear) && isolate(rv$currentYear) < endYear && timer != 0) {
-      rv$currentYear = isolate(rv$currentYear)+1
+    if (isolate(rvr$currentYearRange) && isolate(rvr$currentYearRange) < endYear && timer != 0) {
+      rvr$currentYearRange = isolate(rvr$currentYearRange)+1
       
-      if(rv$currentYear == endYear) {
-        rv$timer = reactiveTimer(Inf)
+      if(rvr$currentYearRange == endYear) {
+        rvr$timer = reactiveTimer(Inf)
       }
     }
   })
   
+  observe({
+    print(isolate(rvg$currentYear))
+    timer <- rvg$timer()
+    
+    if (isolate(rvg$currentYear) && isolate(rvg$currentYear) < endYear && timer != 0) {
+      rvg$currentYear = isolate(rvg$currentYear)+1
+      
+      if(rvg$currentYear == endYear) {
+        rvg$timer = reactiveTimer(Inf)
+      }
+    }
+  })
+  
+  output$populationAgeRange = renderPlotly({
+    populationAgeRangePlot(rvr$currentYearRange)
+  })
+  
   output$populationAgeGroup = renderPlotly({
-    populationAgeGroupPlot(rv$currentYear)
+    populationAgeGroupPlot(rvg$currentYear)
   })
   
   output$currentYear = renderText({
-    rv$currentYear
+    rvg$currentYear
+  })
+  
+  output$rangeCurrentYear = renderText({
+    rvr$currentYearRange
   })
   
   observeEvent(input$start, {
-    rv$timer = reactiveTimer(1000)
+    rvg$timer = reactiveTimer(500)
   })
   
   observeEvent(input$pause, {
-    rv$timer = reactiveTimer(Inf)
+    rvg$timer = reactiveTimer(Inf)
   })
   
   observeEvent(input$reset, {
-    rv$currentYear = startYear
-    rv$timer = reactiveTimer(Inf)
-    rv$timer = function() {return(0)}
+    rvg$currentYear = startYear
+    rvg$timer = reactiveTimer(Inf)
+    rvg$timer = function() {return(0)}
+  })
+  
+  observeEvent(input$startr, {
+    rvr$timer = reactiveTimer(500)
+  })
+  
+  observeEvent(input$pauser, {
+    rvr$timer = reactiveTimer(Inf)
+  })
+  
+  observeEvent(input$resetr, {
+    rvr$currentYearRange = startYear
+    rvr$timer = reactiveTimer(Inf)
+    rvr$timer = function() {return(0)}
   })
 }

@@ -1,5 +1,4 @@
 library(plotly)
-source("plots/utilities/population.R")
 
 ageGroups <- getPopulationByAgeGroup()
 

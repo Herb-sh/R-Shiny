@@ -8,9 +8,11 @@ if (!require("shiny.router")) install.packages("shiny.router"); library(shiny.ro
 if (!require("zoo")) install.packages('zoo'); library(zoo)
 
 # Plots
+source("plots/utilities/population.service.R")
 source('plots/migration.R')
 source('plots/employment-rate.R')
-source('plots/population-pyramid.R')
+source('plots/population-age-group.R')
+source('plots/population-age-range.R')
 # Routes
 source('route-pages/dashboard.R')
 source('route-pages/inputIndicators.R')

@@ -1,4 +1,5 @@
-.population-age-group .current-year {
+.population-age-group .current-year,
+.population-age-range .current-year{
     position: absolute;
     right: 20%;
     top: 100px;
