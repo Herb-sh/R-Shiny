@@ -1,4 +1,5 @@
 library(plotly)
+library(gganimate)
 
 ageGroups <- getPopulationByAgeGroup()
 
@@ -13,6 +14,13 @@ populationAgeGroupPlot = function(displayYear) {
     geom_bar(data = subset(ageGroupsGenderYear, Gender == "Women"), stat = "identity") +
     geom_bar(data = subset(ageGroupsGenderYear, Gender == "Men"), stat = "identity") +
     scale_y_continuous(labels = c("4m", "2m", "0m", "2m", "4m")) + 
+    # gganimate specific bits:
+    transition_states(
+      frame,
+      transition_length = 2,
+      state_length = 1
+    ) +
+    ease_aes('sine-in-out') +
     coord_flip() +
     theme_light() +
     theme(

@@ -6,23 +6,6 @@ populationReady <- function(input, output, session, clicks) {
                        timer = function() {return(0)},
                        ageGroupPlot = populationAgeGroupPlot(startYear))
   
-  rvr <- reactiveValues(currentYearRange = startYear,
-                       timer = function() {return(0)},
-                       ageRangePlot = populationAgeGroupPlot(startYear))
-  
-  observe({
-    print(isolate(rvr$currentYearRange))
-    timer <- rvr$timer()
-    
-    if (isolate(rvr$currentYearRange) && isolate(rvr$currentYearRange) < endYear && timer != 0) {
-      rvr$currentYearRange = isolate(rvr$currentYearRange)+1
-      
-      if(rvr$currentYearRange == endYear) {
-        rvr$timer = reactiveTimer(Inf)
-      }
-    }
-  })
-  
   observe({
     print(isolate(rvg$currentYear))
     timer <- rvg$timer()
@@ -36,20 +19,12 @@ populationReady <- function(input, output, session, clicks) {
     }
   })
   
-  output$populationAgeRange = renderPlotly({
-    populationAgeRangePlot(rvr$currentYearRange)
-  })
-  
   output$populationAgeGroup = renderPlotly({
     populationAgeGroupPlot(rvg$currentYear)
   })
   
   output$currentYear = renderText({
     rvg$currentYear
-  })
-  
-  output$rangeCurrentYear = renderText({
-    rvr$currentYearRange
   })
   
   observeEvent(input$start, {
@@ -64,19 +39,5 @@ populationReady <- function(input, output, session, clicks) {
     rvg$currentYear = startYear
     rvg$timer = reactiveTimer(Inf)
     rvg$timer = function() {return(0)}
-  })
-  
-  observeEvent(input$startr, {
-    rvr$timer = reactiveTimer(500)
-  })
-  
-  observeEvent(input$pauser, {
-    rvr$timer = reactiveTimer(Inf)
-  })
-  
-  observeEvent(input$resetr, {
-    rvr$currentYearRange = startYear
-    rvr$timer = reactiveTimer(Inf)
-    rvr$timer = function() {return(0)}
   })
 }

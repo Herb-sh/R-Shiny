@@ -5,7 +5,8 @@ if (!require("shiny")) install.packages("shiny"); library(shiny)
 if (!require("quantmod")) install.packages("quantmod"); library(quantmod)
 if (!require("plotly")) install.packages("plotly"); library(plotly)
 if (!require("shiny.router")) install.packages("shiny.router"); library(shiny.router)
-if (!require("zoo")) install.packages('zoo'); library(zoo)
+if (!require("zoo")) install.packages('zoo'); library(zoo) 
+if (!require("gganimate")) install.packages('gganimate'); library(gganimate)
 
 # Plots
 source("plots/utilities/population.service.R")
@@ -15,10 +16,12 @@ source('plots/population-age-group.R')
 source('plots/population-age-range.R')
 # Routes
 source('route-pages/dashboard.R')
-source('route-pages/inputIndicators.R')
-source('route-pages/outputIndicators.R')
 source('route-pages/population.R')
+source('route-pages/dependency-rate.R')
+source('route-pages/migration.R')
 
+# Configs
+#options(shiny.port = 4200)
 
 page <- function(body, title) {
    return(fluidPage(
@@ -42,8 +45,8 @@ page <- function(body, title) {
 router <- make_router(
    default = route("/", page(htmlTemplate("www/pages/dashboard.html"), "Dashboard"), dashboardReady),
    route("population", page(htmlTemplate("www/pages/population.html"), "Bevölkerungsentwicklung"), populationReady),
-   route("input-indicators", page(htmlTemplate("www/pages/input-indicators.html"), "input-indicators"), inputIndicatorsReady),
-   route("output-indicators",  page(htmlTemplate("www/pages/output-indicators.html"), "output-indicators"), outputIndicatorsReady),
+   route("migration", page(htmlTemplate("www/pages/migration.html"), "Einwanderung"), migrationReady),
+   route("dependency-rate",  page(htmlTemplate("www/pages/dependency-rate.html"), "Abhängigkeitsquote"), dependencyRateReady),
    route("faq", page(htmlTemplate("www/pages/faq.html"), "FAQ"), NaN)
 )
 
@@ -52,6 +55,10 @@ ui <- basicPage(
 )
 
 server <- function(input, output, session) {
+   observeEvent("", function() {
+      print("buu")
+   })
+   
    router$server(input, output, session)
 }
 
