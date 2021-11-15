@@ -23,12 +23,43 @@ dashboardReady <- function(input, output, session, clicks) {
   totalDependencyRatePrev <- totalDependencyRatePrev[1, "Value"]
   
   output$dependencyRate = renderText({
-    round(totalDependencyRate, 3)
+    round(totalDependencyRate*100, 1)
   })
   
-  print(totalDependencyRate)
-  print(totalDependencyRatePrev)
   output$increaseDR = renderText({
-    round((totalDependencyRate - totalDependencyRatePrev), 4)
+    round((totalDependencyRate - totalDependencyRatePrev)*100, 1)
+  })
+  
+  # Old Dependency Rate 
+  totalOldDependencyRate <- dependencyRate %>% filter(MetricCode == "OAD15-64", Gender=="Total", Year == lastYear) %>% select(Value)
+  totalOldDependencyRate <- totalOldDependencyRate[1, "Value"]
+  totalOldDependencyRatePrev <- dependencyRate %>% filter(MetricCode == "OAD15-64", Gender=="Total", Year == lastYear-1) %>% select(Value)
+  totalOldDependencyRatePrev <- totalOldDependencyRatePrev[1, "Value"]
+  
+  print(totalOldDependencyRate)
+  print(totalOldDependencyRatePrev)
+  output$oldDependencyRate = renderText({
+    round(totalOldDependencyRate*100, 1)
+  })
+  
+  output$increaseOldDR = renderText({
+    round((totalOldDependencyRate - totalOldDependencyRatePrev)*100, 1)
+  })
+  
+  
+  observeEvent(input$dashboardPop, {
+    change_page("population")
+  })
+  
+  observeEvent(input$dashboardDep, {
+    change_page("dependency-rate")
+  })
+  
+  observeEvent(input$dashboardOldDep, {
+    change_page("dependency-rate")
+  })
+  
+  observeEvent(input$dashboardMig, {
+    change_page("migration")
   })
 }
