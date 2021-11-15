@@ -16,6 +16,7 @@ source('plots/population-age-group.R')
 source('plots/population-age-range.R')
 # Routes
 source('route-pages/dashboard.R')
+source('route-pages/data-overview.R')
 source('route-pages/population.R')
 source('route-pages/dependency-rate.R')
 source('route-pages/migration.R')
@@ -44,9 +45,10 @@ page <- function(body, title) {
 
 router <- make_router(
    default = route("/", page(htmlTemplate("www/pages/dashboard.html"), "Dashboard"), dashboardReady),
+   route("data-overview", page(htmlTemplate("www/pages/data-overview.html"), "Datenübersicht"), dataOverviewReady),
    route("population", page(htmlTemplate("www/pages/population.html"), "Bevölkerungsentwicklung"), populationReady),
    route("migration", page(htmlTemplate("www/pages/migration.html"), "Einwanderung"), migrationReady),
-   route("dependency-rate",  page(htmlTemplate("www/pages/dependency-rate.html"), "Abhängigkeitsquote"), dependencyRateReady),
+   route("dependency-rate",  page(htmlTemplate("www/pages/dependency-rate.html"), "Abhängigenquotient"), dependencyRateReady),
    route("faq", page(htmlTemplate("www/pages/faq.html"), "FAQ"), NaN)
 )
 

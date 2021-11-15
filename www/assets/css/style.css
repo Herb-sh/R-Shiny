@@ -6,3 +6,20 @@
     z-index: 1;
     font-size: 18px;
 }
+
+.pointer {
+    cursor: pointer;
+}
+
+.dashboard .card-pop .card-icon {
+  color: #4154f1;
+  background: #f6f6fe;
+}
+.dashboard .card-dep .card-icon, .dashboard .card-old-dep .card-icon {
+  color: #2eca6a;
+  background: #e0f8e9;
+}
+.dashboard .card-mig .card-icon {
+  color: #ff771d;
+  background: #ffecdf;
+}
