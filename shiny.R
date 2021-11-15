@@ -55,10 +55,6 @@ ui <- basicPage(
 )
 
 server <- function(input, output, session) {
-   observeEvent("", function() {
-      print("buu")
-   })
-   
    router$server(input, output, session)
 }
 
