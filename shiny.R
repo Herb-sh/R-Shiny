@@ -7,6 +7,8 @@ if (!require("plotly")) install.packages("plotly"); library(plotly)
 if (!require("shiny.router")) install.packages("shiny.router"); library(shiny.router)
 if (!require("zoo")) install.packages('zoo'); library(zoo) 
 if (!require("gganimate")) install.packages('gganimate'); library(gganimate)
+if (!require("viridis")) install.packages('viridis'); library(viridis)
+if (!require("hrbrthemes")) install.packages('hrbrthemes'); library(hrbrthemes)
 
 # Plots
 source("plots/utilities/population.service.R")
@@ -14,6 +16,7 @@ source('plots/migration.R')
 source('plots/employment-rate.R')
 source('plots/population-age-group.R')
 source('plots/population-age-range.R')
+source('plots/population-age-range-wave.R')
 # Routes
 source('route-pages/dashboard.R')
 source('route-pages/data-overview.R')

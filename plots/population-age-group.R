@@ -13,7 +13,6 @@ populationAgeGroupPlot = function(displayYear) {
   
   ageGroupsGenderYear$Value <- ifelse(ageGroupsGenderYear$Gender == "Men", -1*ageGroupsGenderYear$Value, ageGroupsGenderYear$Value)
   
-  print(ageGroupsGenderYear)
   plot <- ggplot(ageGroupsGenderYear, aes(x = MetricCode, xlab = Metric, y = Value, fill = Gender)) +
     geom_bar(data = subset(ageGroupsGenderYear, Gender == "Women"), stat = "identity") +
     geom_bar(data = subset(ageGroupsGenderYear, Gender == "Men"), stat = "identity") +

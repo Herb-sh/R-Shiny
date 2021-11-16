@@ -27,6 +27,10 @@ dependencyRateReady <- function(input, output, session, clicks) {
     rvr$currentYearRange
   })
   
+  output$populationAgeRangeWave = renderPlotly({
+    populationAgeRangeWavePlot(startYear)
+  })
+  
   observeEvent(input$startr, {
     rvr$timer = reactiveTimer(500)
   })
