@@ -3,6 +3,10 @@ library(plotly)
 ageRange <- getPopulationByAgeRange()
 
 
+colorRed = "#d14956"
+colorBlue= "#466a99"
+
+
 populationAgeRangePlot = function(displayYear) {
 
   ageRangeYear <- ageRange %>% 
@@ -13,6 +17,10 @@ populationAgeRangePlot = function(displayYear) {
   
   plot <- ggplot(ageRangeYear, aes(x=MetricCode, y=Value, fill = factor(Gender))) +
     geom_bar(alpha=0.8, stat = "identity") +
+    scale_fill_manual(name="Geschlecht", 
+                      values = c(colorBlue, colorRed), 
+                      breaks = c("Men", "Women"),
+                      labels = c("Man", "Frau")) +
     labs(x = "Altersspanne", y = "Bevölkerungsnummer") +
     scale_x_discrete(labels = c("Unter 20", "20-64", "Über 65")) +
     scale_y_continuous(labels = function(n) {
