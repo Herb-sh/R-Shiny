@@ -36,8 +36,6 @@ dashboardReady <- function(input, output, session, clicks) {
   totalOldDependencyRatePrev <- dependencyRate %>% filter(MetricCode == "OAD15-64", Gender=="Total", Year == lastYear-1) %>% select(Value)
   totalOldDependencyRatePrev <- totalOldDependencyRatePrev[1, "Value"]
   
-  print(totalOldDependencyRate)
-  print(totalOldDependencyRatePrev)
   output$oldDependencyRate = renderText({
     round(totalOldDependencyRate*100, 1)
   })
