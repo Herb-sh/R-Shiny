@@ -22,6 +22,7 @@ source('route-pages/dashboard.R')
 source('route-pages/data-overview.R')
 source('route-pages/population.R')
 source('route-pages/dependency-rate.R')
+source('route-pages/dependency-rate-forecast.R')
 source('route-pages/migration.R')
 
 # Configs
@@ -52,6 +53,7 @@ router <- make_router(
    route("population", page(htmlTemplate("www/pages/population.html"), "Bevölkerungsentwicklung"), populationReady),
    route("migration", page(htmlTemplate("www/pages/migration.html"), "Einwanderung"), migrationReady),
    route("dependency-rate",  page(htmlTemplate("www/pages/dependency-rate.html"), "Abhängigenquotient"), dependencyRateReady),
+   route("dependency-rate-forecast",  page(htmlTemplate("www/pages/dependency-rate-forecast.html"), "Abhängigenquotient prognose"), dependencyRateForecastReady),
    route("faq", page(htmlTemplate("www/pages/faq.html"), "FAQ"), NaN)
 )
 
