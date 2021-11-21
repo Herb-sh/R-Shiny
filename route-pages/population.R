@@ -7,7 +7,6 @@ populationReady <- function(input, output, session, clicks) {
                        ageGroupPlot = populationAgeGroupPlot(startYear))
   
   observe({
-    print(isolate(rvg$currentYear))
     timer <- rvg$timer()
     
     if (isolate(rvg$currentYear) && isolate(rvg$currentYear) < endYear && timer != 0) {

@@ -8,8 +8,8 @@ populationAgeRangeWavePlot <- function(currentYear) {
     filter(Gender %in% c("Women", "Men"), MetricCode %in% c("LESS_20", "20-64", "65_OVER")) %>%
     group_by(Year, MetricCode) %>%
     summarise(ValueSum = sum(Value)) %>%
-    mutate(percentage = ValueSum / sum(ValueSum))
-  print(ageRangeGender)
+    mutate(percentage = (ValueSum / sum(ValueSum)))
+
   ageRangeGender$MetricCode <- factor(ageRangeGender$MetricCode, levels=c("65_OVER", "20-64", "LESS_20"))
   
   plot <- ggplot(ageRangeGender, aes(x=Year, y=ValueSum, fill=MetricCode)) + 

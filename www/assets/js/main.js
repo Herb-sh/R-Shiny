@@ -7,6 +7,10 @@
 (function() {
   "use strict";
 
+  if (window.appStart !== undefined) {
+    return;
+  }
+  window.appStart = true;
   /**
    * Easy selector helper function
    */
@@ -116,76 +120,6 @@
   })
 
   /**
-   * Initiate quill editors
-   */
-  if (select('.quill-editor-default')) {
-    new Quill('.quill-editor-default', {
-      theme: 'snow'
-    });
-  }
-
-  if (select('.quill-editor-bubble')) {
-    new Quill('.quill-editor-bubble', {
-      theme: 'bubble'
-    });
-  }
-
-  if (select('.quill-editor-full')) {
-    new Quill(".quill-editor-full", {
-      modules: {
-        toolbar: [
-          [{
-            font: []
-          }, {
-            size: []
-          }],
-          ["bold", "italic", "underline", "strike"],
-          [{
-              color: []
-            },
-            {
-              background: []
-            }
-          ],
-          [{
-              script: "super"
-            },
-            {
-              script: "sub"
-            }
-          ],
-          [{
-              list: "ordered"
-            },
-            {
-              list: "bullet"
-            },
-            {
-              indent: "-1"
-            },
-            {
-              indent: "+1"
-            }
-          ],
-          ["direction", {
-            align: []
-          }],
-          ["link", "image", "video"],
-          ["clean"]
-        ]
-      },
-      theme: "snow"
-    });
-  }
-
-  /**
-   * Initiate TinyMCE Editor
-   */
-
-  var useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  
-  /**
    * Initiate Bootstrap validation check
    */
   var needsValidation = document.querySelectorAll('.needs-validation')
@@ -201,27 +135,25 @@
         form.classList.add('was-validated')
       }, false)
     })
-
-  /**
-   * Initiate Datatables
-   */
-  const datatables = select('.datatable', true)
-  datatables.forEach(datatable => {
-    new simpleDatatables.DataTable(datatable);
-  })
-
-  /**
-   * Autoresize echart charts
-   */
-  const mainContainer = select('#main');
-  if (mainContainer) {
-    setTimeout(() => {
-      new ResizeObserver(function() {
-        select('.echart', true).forEach(getEchart => {
-          echarts.getInstanceByDom(getEchart).resize();
-        })
-      }).observe(mainContainer);
-    }, 200);
-  }
+  
+  const sideNav = document.getElementById("sidebar-nav");
+ // if (sideNav) {
+      window.addEventListener('hashchange', menuState);
+ // }
+ 
+     function menuState(event) {
+        const hash = (window.location.hash.split("#!/")[1]  || "");
+        const links = document.querySelectorAll("a.nav-link");
+        const className = "collapsed";
+        links.forEach((link) => {
+          link.classList.remove(className);
+          
+          var linkHash = (link.href.split("#!/")[1] || "");
+          if (linkHash !== hash  && link.className.split(" ").indexOf(className) === -1) { //
+            link.classList.add(className)
+          }
+        });
+      }
+     menuState();
 
 })();

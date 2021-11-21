@@ -1,14 +1,24 @@
 ### Install required packages
-if (!require("rio")) install.packages("rio"); library(rio)
-if (!require("tidyverse")) install.packages("tidyverse"); library(tidyverse)
-if (!require("shiny")) install.packages("shiny"); library(shiny)
-if (!require("quantmod")) install.packages("quantmod"); library(quantmod)
-if (!require("plotly")) install.packages("plotly"); library(plotly)
-if (!require("shiny.router")) install.packages("shiny.router"); library(shiny.router)
-if (!require("zoo")) install.packages('zoo'); library(zoo) 
-if (!require("gganimate")) install.packages('gganimate'); library(gganimate)
-if (!require("viridis")) install.packages('viridis'); library(viridis)
-if (!require("hrbrthemes")) install.packages('hrbrthemes'); library(hrbrthemes)
+required_packages<-c("rio",
+                     "tidyverse",
+                     "shiny",
+                     "quantmod", 
+                     "plotly",
+                     "shiny.router",
+                     "zoo",
+                     "gganimate",
+                     "viridis",
+                     "hrbrthemes")
+
+# try to load packages and install missing ones
+for (package in required_packages) {
+  # require tries to load a package, and returns a boolean indicating success
+  if (!require(package, character.only = TRUE)) {
+    install.packages(package , dependencies = TRUE)
+    require(package, character.only = TRUE)
+  }
+}
+
 
 # Plots
 source("plots/utilities/population.service.R")

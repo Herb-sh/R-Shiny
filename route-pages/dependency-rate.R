@@ -7,7 +7,6 @@ dependencyRateReady <- function(input, output, session, clicks) {
                         timer = function() {return(0)},
                         ageRangePlot = populationAgeGroupPlot(startYear))
   observe({
-    print(isolate(rvr$currentYearRange))
     timer <- rvr$timer()
     
     if (isolate(rvr$currentYearRange) && isolate(rvr$currentYearRange) < endYear && timer != 0) {
