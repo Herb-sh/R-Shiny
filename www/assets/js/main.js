@@ -133,13 +133,13 @@
     })
   
   const sideNav = document.getElementById("sidebar-nav");
- // if (sideNav) {
+  if (sideNav) {
       window.addEventListener('hashchange', menuState);
- // }
+  }
  
      function menuState(event) {
         const hash = (window.location.hash.split("#!/")[1]  || "");
-        const links = document.querySelectorAll("a.nav-link");
+        const links = sideNav.querySelectorAll("a.nav-link");
         const className = "collapsed";
         links.forEach((link) => {
           link.classList.remove(className);

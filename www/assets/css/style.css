@@ -1,10 +1,17 @@
 .population-age-group .current-year,
-.population-age-range .current-year{
+.population-age-range .current-year {
     position: absolute;
     right: 20%;
     top: 100px;
     z-index: 1;
-    font-size: 18px;
+    font-size: 20px;
+}
+.faq .accordion-button {
+  font-size: 16px;
+}
+
+.population-age-range .current-year{
+  top: 150px;
 }
 
 .pointer {

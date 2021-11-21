@@ -40,20 +40,10 @@ source('route-pages/migration.R')
 
 page <- function(body, title) {
    return(fluidPage(
-      tags$html(
-         tags$head <- htmlTemplate("www/parts/head.html"),
-         tags$body(
-            htmlTemplate("www/parts/header.html"),
-            htmlTemplate("www/parts/left-menu.html"),
-            tags$main(id="main", class="main",
-                      tags$div(class="pagetitle",
-                            tags$h1(title)
-                      ),
-                      body
-            ),
-            htmlTemplate("www/parts/body-script.html")
-         )
-      )
+      tags$div(class="pagetitle",
+         tags$h1(title)
+      ),
+      body
    ))
 }
 
@@ -62,14 +52,28 @@ router <- make_router(
    route("data-overview", page(htmlTemplate("www/pages/data-overview.html"), "Datenübersicht"), dataOverviewReady),
    route("population", page(htmlTemplate("www/pages/population.html"), "Bevölkerungsentwicklung"), populationReady),
    route("migration", page(htmlTemplate("www/pages/migration.html"), "Einwanderung"), migrationReady),
-   route("dependency-rate",  page(htmlTemplate("www/pages/dependency-rate.html"), "Abhängigenquotient"), dependencyRateReady),
-   route("dependency-rate-forecast",  page(htmlTemplate("www/pages/dependency-rate-forecast.html"), "Abhängigenquotient prognose"), dependencyRateForecastReady),
-   route("faq", page(htmlTemplate("www/pages/faq.html"), "FAQ"), NaN)
+   route("dependency-rate",  page(htmlTemplate("www/pages/dependency-rate.html"), "Abhängigkeitsquote"), dependencyRateReady),
+   route("dependency-rate-forecast",  page(htmlTemplate("www/pages/dependency-rate-forecast.html"), "Abhängigkeitsquote prognose"), dependencyRateForecastReady),
+   route("faq", page(htmlTemplate("www/pages/faq.html"), "FAQ"), NaN),
+   page_404 = page404(
+      message404 = "Sorry, we could not this page!"
+   )
 )
 
-ui <- basicPage(
-   router$ui
-)
+# Make output for our router in main UI of Shiny app.
+ui <- shinyUI(fluidPage(
+   tags$html(
+      tags$head <- htmlTemplate("www/parts/head.html"),
+      tags$body(
+         htmlTemplate("www/parts/header.html"),
+         htmlTemplate("www/parts/left-menu.html"),
+         tags$main(id="main", class="main",
+             router$ui   
+         ),
+         htmlTemplate("www/parts/body-script.html")
+      )
+   )
+))
 
 server <- function(input, output, session) {
    router$server(input, output, session)
