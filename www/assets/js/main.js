@@ -7,10 +7,6 @@
 (function() {
   "use strict";
 
-  if (window.appStart !== undefined) {
-    return;
-  }
-  window.appStart = true;
   /**
    * Easy selector helper function
    */
