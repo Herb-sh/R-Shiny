@@ -22,7 +22,10 @@
                    {{plotlyOutput("populationAgeRangeWave")}}
                 </div>
                 <div class="tab-pane fade" id="tab-bar" role="tabpanel">
-                     <div class="pull-right current-year">{{textOutput("rangeCurrentYear", inline = T)}}</div>
+                     <div class="pull-right current-year text-primary">
+                        {{textOutput("rangeCurrentYear", inline = T)}}
+                        <span class="badge bg-primary text-light">{{textOutput("currentDependencyRatio", inline = T)}} %</span>
+                     </div>
                      <h5 class="card-title clearfix pb-0 pt-1">
                             <span class="btn-group btn-group-lg pull-right">
                                 <button id="startr" class="btn btn-primary action-button">
@@ -38,8 +41,8 @@
                                     Reset
                                 </button>
                               </span>
+                              
                          </h5>
-                     
                      {{plotlyOutput("populationAgeRange")}}
                 </div>
               </div><!-- End Bordered Tabs -->

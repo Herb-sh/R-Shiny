@@ -22,6 +22,11 @@ getDependencyRate <- function() {
   return(population %>% filter(MetricCode %in% c("TOTD20-64", "OAD15-64")))
 }
 
+getDependencyRatioByYear <- function(year) {
+   depRatioRow <- (population %>% filter(MetricCode %in% c("TOTD20-64"), Year == year, Gender == "Total"))
+  return(depRatioRow$Value)
+}
+
 # Share of Population by Age Range
 getPopulationShareByAgeRange <- function() {
   return(population %>% filter(MetricCode %in% c("LESS_15_SHARE", "15-24_SHARE", "15-64_SHARE", "65_OVER_SHARE")))

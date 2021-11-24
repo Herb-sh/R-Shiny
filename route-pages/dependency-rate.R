@@ -26,6 +26,10 @@ dependencyRateReady <- function(input, output, session, clicks) {
     rvr$currentYearRange
   })
   
+  output$currentDependencyRatio = renderText({
+    format(round( as.numeric(getDependencyRatioByYear(rvr$currentYearRange)*100), 1), decimal.mark=",")
+  })
+  
   output$populationAgeRangeWave = renderPlotly({
     populationAgeRangeWavePlot(startYear)
   })

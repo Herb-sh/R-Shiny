@@ -19,7 +19,6 @@ for (package in required_packages) {
   }
 }
 
-
 # Plots
 source("plots/utilities/population.service.R")
 source('plots/migration.R')
