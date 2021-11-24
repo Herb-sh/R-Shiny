@@ -8,22 +8,23 @@
 # data source: https://stats.oecd.org/index.aspx?DataSetCode=POP_PROJ
 
 
-library(tidyquant)
+#library(tidyquant)
 library(tidyverse)
-library(gt)
-library(devtools)
+#library(gt)
+#library(devtools)
 library(inspectdf)
 library(readr)
 library(dplyr)
-library(skimr)
-library(reshape2)
-library("extrafont")
+#library(skimr)
+#library(reshape2)
+#library("extrafont")
 
 #1. IMPORT AN VIEWING----
 
 path <- 'C:/Users/zinta/Documents/AALEN LECTURES/BusinessAnalitics/r-project-main/data/Historical_German_Population.csv'
 germ_data <- read_csv (path)
 head(germ_data)
+view(germ_data)
 
 #1. SELECT Columns ---
 germ_data <- subset(germ_data, select = c(`Sex`,`Age`, `Value`,`Time`))
@@ -36,30 +37,43 @@ view(germ_data)
 
 
 #2. INSPECT DATA
+# Observation:  Time and Value are numeric and Sex and Age are in character
 
 inspect_types(germ_data) %>% show_plot()
 
 #2a. SIZE
 
 inspect_mem(germ_data)  %>% show_plot() 
-#R: 'The size of the ages are greater than the others -> there might be repeating info '
+
+#Observation: 'The size of the ages are greater than the others -> there are ore characters -->there might be repeating info'
+# indeed ages include are grouped and aggregation-
 
 #2b.  % OF NA VALUES 
 inspect_na(germ_data) %>% show_plot()
 #R: There is none 
 
-#2c. VISUALIZING OF FULL DISTRIBUTION ( NUMERICAL AND CATERGORICAL)
+#2c. VISUALIZING OF FULL DISTRIBUTION (NUMERICAL AND CATERGORICAL)
 inspect_cat(germ_data) %>% show_plot()
 
 
 #3. Further manipulation 
-# converting into millions
+# converting population into millions
 germ_data$Value<- round(germ_data$Value/1000000,2)
 head(germ_data)
 view(germ_data)
 
-#Selecting rows 
+#Selecting rows base on the age column 
 
+# first let determine the type 
+
+str(germ_data)
+
+#Observation: Age is a string
+
+# using trying manipulation to identify the subset of the data that i need . 
+
+
+##
 plot  <- germ_data %>%
   select(Age, Time, Value,Sex) %>%
   filter( ., Age == 'Total' & Sex == "Total") %>%
@@ -87,6 +101,7 @@ plot
 
 
 
+arrange(time) 
 
 
 
