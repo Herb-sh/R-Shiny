@@ -137,7 +137,6 @@ model2 <-fit.prophet(model2,mergedCol)
 future2 <- make_future_dataframe(model2, periods= 30, freq ='year')
 tail(future2)
 
-
 #forecast
 forecast2 <- predict(model2, future2)
 tail(forecast2[c('ds','yhat','yhat_lower','yhat_upper')])
