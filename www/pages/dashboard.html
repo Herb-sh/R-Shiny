@@ -1,0 +1,77 @@
+<section class="dashboard">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card info-card card-pop action-button pointer" id="dashboardPop">
+        <div class="card-body">
+          <h5 class="card-title">Bevölkerungsentwicklung <span>| 2020</span></h5>
+    
+           <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                 <i class="bi bi-bar-chart-fill"></i>
+              </div>
+           <div class="ps-3">
+              <h6>{{textOutput("totalPopulation", inline = T)}}</h6>
+              <span class="text-success pt-1 fw-bold">{{textOutput("increase", inline = T)}}%</span>
+              <span class="text-muted pt-2 ps-1">erhöhung von 2019</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+     <div class="col-lg-6">
+      <div class="card info-card card-dep action-button pointer" id="dashboardDep">
+        <div class="card-body">
+          <h5 class="card-title">Abhängigkeitsquote <span>| 2020</span></h5>
+    
+           <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                 <i class="bi bi-people-fill"></i>
+              </div>
+           <div class="ps-3">
+              <h6>{{textOutput("dependencyRate", inline = T)}}%</h6>
+               <span class="text-danger pt-1 fw-bold">{{textOutput("increaseDR", inline = T)}}%</span>
+               <span class="text-muted pt-2 ps-1">erhöhung von 2019</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+   <div class="col-lg-6">
+      <div class="card info-card card-old-dep action-button pointer" id="dashboardOldDep">
+        <div class="card-body">
+          <h5 class="card-title">Abhängigkeitsquote (65+/15-64) <span>| 2020</span></h5>
+    
+           <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                 <i class="bi bi-people-fill"></i>
+              </div>
+           <div class="ps-3">
+              <h6>{{textOutput("oldDependencyRate", inline = T)}}%</h6>
+               <span class="text-danger pt-1 fw-bold">{{textOutput("increaseOldDR", inline = T)}}%</span>
+               <span class="text-muted pt-2 ps-1">erhöhung von 2019</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+     <div class="col-lg-6">
+      <div class="card info-card card-mig action-button pointer" id="dashboardMig">
+        <div class="card-body">
+          <h5 class="card-title">Einwanderung <span>| 2020</span></h5>
+    
+           <div class="d-flex align-items-center">
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                 <i class="bi bi-arrow-left-right"></i>
+              </div>
+           <div class="ps-3">
+              <h6>Einwanderung</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

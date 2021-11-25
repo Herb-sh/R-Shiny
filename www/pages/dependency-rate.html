@@ -1,0 +1,51 @@
+<section class="population-age-range">
+  <div class="card">
+            <div class="card-body">
+              <h5 class="card-title mb-0 pb-0">
+                <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-wave" type="button" role="tab">
+                      <i class="bi bi-graph-down"></i>
+                      Wellendiagramm
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-bar" type="button" role="tab">
+                      <i class="bi bi-bar-chart-fill"></i>
+                      Bar diagramm
+                    </button>
+                  </li>
+                </ul>
+              </h5>
+              <div class="tab-content pt-2">
+                <div class="tab-pane fade show active" id="tab-wave" role="tabpanel">
+                   {{plotlyOutput("populationAgeRangeWave")}}
+                </div>
+                <div class="tab-pane fade" id="tab-bar" role="tabpanel">
+                     <div class="pull-right current-year text-primary">
+                        {{textOutput("rangeCurrentYear", inline = T)}}
+                        <span class="badge bg-primary text-light">{{textOutput("currentDependencyRatio", inline = T)}} %</span>
+                     </div>
+                     <h5 class="card-title clearfix pb-0 pt-1">
+                            <span class="btn-group btn-group-lg pull-right">
+                                <button id="startr" class="btn btn-primary action-button">
+                                  <i class="bi bi-play"></i>
+                                    Start
+                                </button>
+                                <button id="pauser" class="btn btn-warning action-button">
+                                  <i class="bi bi-pause"></i>
+                                    Pause
+                                </button>
+                                <button id="resetr" class="btn btn-success action-button">
+                                  <i class="bi bi-arrow-repeat"></i>
+                                    Reset
+                                </button>
+                              </span>
+                              
+                         </h5>
+                     {{plotlyOutput("populationAgeRange")}}
+                </div>
+              </div><!-- End Bordered Tabs -->
+            </div>
+          </div>
+</section>
