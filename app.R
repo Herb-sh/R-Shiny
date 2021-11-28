@@ -1,3 +1,4 @@
+options(repos = list(CRAN="http://cran.rstudio.com/"))
 ### Install required packages
 required_packages<-c("rio",
                      "tidyverse",
@@ -8,24 +9,36 @@ required_packages<-c("rio",
                      "zoo",
                      "gganimate",
                      "viridis",
-                     "hrbrthemes")
+                     "hrbrthemes",
+                     
+                     "devtools",
+                     "prophet",
+                     "lubridate",
+                     "readxl",
+                     "recipes",
+                     "tidyquant",
+                     "ggrepel",
+                     "dplyr",
+                     "skimr",
+                     "rCharts")
 
 # try to load packages and install missing ones
 for (package in required_packages) {
-  # require tries to load a package, and returns a boolean indicating success
-  if (!require(package, character.only = TRUE)) {
-    install.packages(package, dependencies = TRUE)
-    require(package, character.only = TRUE)
-  }
+   # require tries to load a package, and returns a boolean indicating success
+   if (!require(package, character.only = TRUE)) {
+      install.packages(package , dependencies = TRUE)
+      library(package, character.only = TRUE)
+   }
 }
 
 # Plots
 source("plots/utilities/population.service.R")
-source('plots/migration.R')
-source('plots/employment-rate.R')
-source('plots/population-age-group.R')
-source('plots/population-age-range.R')
-source('plots/population-age-range-wave.R')
+source('plots/migration.plot.R')
+source('plots/employment-rate.plot.R')
+source('plots/population-age-group.plot.R')
+source('plots/population-age-range.plot.R')
+source('plots/population-age-forecast.plot.R')
+source('plots/population-age-range-wave.plot.R')
 # Routes
 source('route-pages/dashboard.R')
 source('route-pages/data-overview.R')
