@@ -1,1 +1,26 @@
-{{plotlyOutput("populationAgeForecast")}}
+<section>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              Einwanderung
+            </h5>
+            {{plotlyOutput("migration")}}
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              Arbeitsmarkt
+            </h5>
+            {{plotlyOutput("populationAgeForecast")}}
+          </div>
+        </div>
+</section>
+
+
+
+
+# I need a drop dowm menu with the names of the columns 
+#choice = columns_names
+#{{plotOutput("employmentRate")}}
