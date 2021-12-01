@@ -47,4 +47,8 @@ dependencyRateReady <- function(input, output, session, clicks) {
     rvr$timer = reactiveTimer(Inf)
     rvr$timer = function() {return(0)}
   })
+  
+  observeEvent(input$goToForecast, {
+    change_page("dependency-rate-forecast")
+  })
 }

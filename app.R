@@ -11,16 +11,9 @@ required_packages<-c("rio",
                      "viridis",
                      "hrbrthemes",
                      
-                     "devtools",
                      "prophet",
-                     "lubridate",
-                     "readxl",
-                     "recipes",
-                     "tidyquant",
-                     "ggrepel",
-                     "dplyr",
-                     "skimr",
-                     "rCharts")
+                     "readxl"
+                    )
 
 # try to load packages and install missing ones
 for (package in required_packages) {

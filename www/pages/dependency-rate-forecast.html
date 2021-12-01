@@ -1,1 +1,25 @@
-{{plotlyOutput("populationAgeForecast")}}
+<section>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <div class="row">
+                <!--<div class="col-6">
+                  Abhängigenquotient Prognose
+                </div> -->
+                <div class="col-3 offset-9">
+                    <select id="metricChange" class="form-select" aria-label="Default select example">
+                      <option value="Population" selected>Population - to be removed from this page</option>
+                      <option value="Net Migration Rate">Net Migration Rate</option>
+                      <option value="Fertility Rate">Fertility Rate</option>
+                      <option value="LifeExpentency (year)">LifeExpentency (year)</option>
+                      <option value="dependecy-rate">Abhängigenquotient</option>
+                      <option value="dependecy-rate-young">Jugendquotient</option>
+                      <option value="dependency-rate-old">Altenquotient </option>
+                    </select>
+                </div>
+              </div>
+            </h5>
+            {{plotOutput("populationAgeForecast")}}
+          </div>
+        </div>
+</section>
