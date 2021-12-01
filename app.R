@@ -10,7 +10,6 @@ required_packages<-c("rio",
                      "gganimate",
                      "viridis",
                      "hrbrthemes",
-                     
                      "devtools",
                      "prophet",
                      "lubridate",
