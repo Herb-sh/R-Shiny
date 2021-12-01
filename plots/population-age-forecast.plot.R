@@ -92,7 +92,7 @@ populationAgeForecast <- function (inputColumn){
   plot(ggplot_gtable(qq2))
   
   
-  return (plot(ggplot_gtable(qq2)))
+  return(plot(ggplot_gtable(qq2)))
 }
 
 #***********************************************************************************

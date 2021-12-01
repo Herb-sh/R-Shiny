@@ -1,5 +1,5 @@
 dependencyRateForecastReady <- function(input, output, session, clicks) {
-  output$populationAgeForecast = renderPlotly({
+  output$populationAgeForecast = renderPlot({
     populationAgeForecast()
   })
 }
