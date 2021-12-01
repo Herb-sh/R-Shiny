@@ -1,21 +1,3 @@
-# BUSINESS SCIENCE  
-# EPISODE 3
-# POPULATION ANALYTICS: EXCEL TO R & THE CORRELATION FUNNEL
-#rm(list=ls()) 
-
-# unemployement location: 
-#https://www.bmfsfj.de/resource/blob/113952/83dbe067b083c7e8475309a88da89721/aeltere-menschen-in-deutschland-und-in-der-eu-englisch-data.pdf
-# renter location dataset: https://www.bmas.de/DE/Service/Statistiken-Open-Data/Daten-zur-Rente/daten-zur-rente.html
-
-#install.packages("reshape2")
-#install.packages("plyr")
-#install.packages("ggplot2")
-
-#install.packages("devtools")
-#devtools::install_github("ramnathv/rCharts")
-
-
-
 # 1.0 READ MULTIPLE EXCEL SHEETS ----
 path   <- 'data/Rente_All.xlsx'
 sheet_names <- excel_sheets(path)

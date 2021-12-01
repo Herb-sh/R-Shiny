@@ -31,6 +31,7 @@ source('plots/employment-rate.plot.R')
 source('plots/population-age-group.plot.R')
 source('plots/population-age-range.plot.R')
 source('plots/population-age-forecast.plot.R')
+source('plots/dependency-rate-forecast.plot.R')
 source('plots/population-age-range-wave.plot.R')
 # Routes
 source('route-pages/dashboard.R')
