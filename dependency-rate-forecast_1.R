@@ -40,7 +40,7 @@ list_all <- lapply(sheet_names, function(x) {as.data.frame(read_excel(path= path
 German_pop <- list_all[[1]]
 Employed_all <- list_all[[2]]
 Employed = subset(Employed_all, select = c(`Year`,`Employed`))
-NewRenter <- list_all[[3]]
+#NewRenter <- list_all[[3]]
 Immigration <- list_all[[4]]
 LifeExpentency <-list_all[[5]]
 Fertility <-list_all[[6]]
@@ -64,6 +64,7 @@ df = Germ_total%>% inner_join(Fertility,by="Year") %>%
 forecast_funct <- function (inputColumn){
      
       #inputColumn="Net Migration Rate"
+      inputColumn ="Immigration"
                                
       df<- df %>% select(c('Year',inputColumn))                                        
       df$Year <- str_c(df$Year,"01", '01', sep='-')
@@ -91,5 +92,20 @@ forecast_funct <- function (inputColumn){
 
 return (plot(ggplot_gtable(qq2)))
 }
+
 #***********************************************************************************
+#*
+#*library      
+#df  %>%
+  #group_by(id) %>%
+#  plot_time_series(
+#    .date_var = Year,
+#    .value    = Population,
+#    .facet_ncol = 3, 
+#    .interactive =TRUE)
+
+
+# I need a drop dowm menu with the names of the columns 
+#choice = columns_names
+#{{plotOutput("employmentRate")}}
  
