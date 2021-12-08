@@ -10,16 +10,10 @@ required_packages<-c("rio",
                      "gganimate",
                      "viridis",
                      "hrbrthemes",
-                     "devtools",
+                     
                      "prophet",
-                     "lubridate",
-                     "readxl",
-                     "recipes",
-                     "tidyquant",
-                     "ggrepel",
-                     "dplyr",
-                     "skimr",
-                     "rCharts")
+                     "readxl"
+                    )
 
 # try to load packages and install missing ones
 for (package in required_packages) {
@@ -37,6 +31,7 @@ source('plots/employment-rate.plot.R')
 source('plots/population-age-group.plot.R')
 source('plots/population-age-range.plot.R')
 source('plots/population-age-forecast.plot.R')
+source('plots/dependency-rate-forecast.plot.R')
 source('plots/population-age-range-wave.plot.R')
 # Routes
 source('route-pages/dashboard.R')

@@ -1,36 +1,8 @@
-# BUSINESS SCIENCE  
-# EPISODE 3
-# POPULATION ANALYTICS: EXCEL TO R & THE CORRELATION FUNNEL
-#rm(list=ls()) 
-
-# unemployement location: 
-#https://www.bmfsfj.de/resource/blob/113952/83dbe067b083c7e8475309a88da89721/aeltere-menschen-in-deutschland-und-in-der-eu-englisch-data.pdf
-# renter location dataset: https://www.bmas.de/DE/Service/Statistiken-Open-Data/Daten-zur-Rente/daten-zur-rente.html
-
-#install.packages("reshape2")
-#install.packages("plyr")
-#install.packages("ggplot2")
-
-#install.packages("devtools")
-#devtools::install_github("ramnathv/rCharts")
-
-
-
-# Libraries
-library(tidyverse)
-library(readxl)
-library(recipes)
-library(tidyquant)
-library(ggrepel)
-library(dplyr)
-library(skimr)
-library(rCharts)
-library(lubridate)
-library(prophet)
-
+#install.packages("gridExtra")
+library(gridExtra)
 
 # 1.0 READ MULTIPLE EXCEL SHEETS ----
-path   <- 'data/Combined-data/Rente_All.xlsx'
+path   <- 'data/Rente_All.xlsx'
 sheet_names <- excel_sheets(path)
 
 
@@ -40,7 +12,6 @@ list_all <- lapply(sheet_names, function(x) {as.data.frame(read_excel(path= path
 German_pop <- list_all[[1]]
 Employed_all <- list_all[[2]]
 Employed = subset(Employed_all, select = c(`Year`,`Employed`))
-#NewRenter <- list_all[[3]]
 Immigration <- list_all[[4]]
 LifeExpentency <-list_all[[5]]
 Fertility <-list_all[[6]]
@@ -63,10 +34,6 @@ df = Germ_total%>% inner_join(Fertility,by="Year") %>%
 
 populationAgeForecast <- function (inputColumn){
   
-  #inputColumn="Net Migration Rate"
-  inputColumn = "Population"
-  #inputColumn = "Fertility Rate"  
-  #inputColumn = "LifeExpentency (year)"
   
   df<- df %>% select(c('Year',inputColumn))                                        
   df$Year <- str_c(df$Year,"01", '01', sep='-')
@@ -74,39 +41,64 @@ populationAgeForecast <- function (inputColumn){
   
   names(df)[names(df)=='Year'] <-'ds'
   names(df)[names(df)==inputColumn] <-'y'
+  
   model_pop <- prophet(yearly.seasonality=TRUE)
   model_pop <- fit.prophet(model_pop,df)
-  future_pop <- make_future_dataframe(model_pop, periods= 30, freq ='year')
+  future_pop <- make_future_dataframe(model_pop, periods= 10, freq ='year')
   tail(future_pop)
   
   #forecast 
   forecast_pop <- predict(model_pop, future_pop)
   tail(forecast_pop[c('ds','yhat','yhat_lower','yhat_upper')])
   
+  #Plot forecast
+  pp <- plot(model_pop, forecast_pop, title='FORECAST', xlab='Year',  ylab=(inputColumn)) 
   
-  #Plot and  Estimates
-  pp <- plot(model_pop, forecast_pop)
-  pp2 <- pp + geom_point(col = 'black') +  
-    xlab('years') +theme_bw()+ ylab(inputColumn)
-  qq2 <- ggplot_build(pp2)
-  plot(ggplot_gtable(qq2))
+
+ 
+   ###---------------------------
+  # Performing the projection on historical data to determine the accuracy of the forecast
+
+  df_error<- head(df,20)
+  model_error <- prophet(yearly.seasonality=TRUE, montly.seasonality=TRUE)
+  model_error<- fit.prophet(model_error,df_error)
+  future_error <- make_future_dataframe(model_error, periods= 11, freq ='year')
+  tail(future_error)
   
+  forecast_error <- predict(model_error, future_error)
+  # merge the actual data with the predicted data
+  forecast_error$Actual <-df$y
+  tail(forecast_error[c('ds','yhat','yhat_lower','yhat_upper','Actual')])
   
-  return(plot(ggplot_gtable(qq2)))
+  err_df<- forecast_error %>% select ( 'ds', 'yhat','Actual')
+  names(err_df)[names(err_df)=='ds'] <-'Year'
+  names(err_df)[names(err_df)=='yhat'] <-'Predicted'
+  
+  #ERROR RSME CALCULAION
+
+  se<- (err_df$Actual - err_df$Predicted)
+  se<-head(se,-1)
+  rmse <- round(sqrt(mean((se)^2)), digits =2)
+  
+  #PLOT
+  err<-ggplot(err_df, aes(Year)) +  
+  geom_line(aes(y=Predicted, colour="red"), size=2) +  # first layer
+  geom_line(aes(y=Actual, colour="purple"), size=2) +
+  xlab('Year') + ylab(inputColumn) +
+  ggtitle(sprintf("Prophet Prediction Performance \\
+                  Forecast vs Actual RMSE: %f",rmse)) +
+    scale_color_identity(name = "Model fit",
+                         breaks = c("red", "purple"),
+                         labels = c("Predicted", "Actual"),
+                         guide = "legend")
+  
+  return(grid.arrange(pp, err, ncol=1))
 }
 
-#***********************************************************************************
-#*
-#*library      
-#df  %>%
-#group_by(id) %>%
-#  plot_time_series(
-#    .date_var = Year,
-#    .value    = Population,
-#    .facet_ncol = 3, 
-#    .interactive =TRUE)
 
 
-# I need a drop dowm menu with the names of the columns 
-#choice = columns_names
-#{{plotOutput("employmentRate")}}
+
+
+
+
+
