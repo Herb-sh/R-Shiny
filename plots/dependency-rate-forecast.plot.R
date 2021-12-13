@@ -33,7 +33,7 @@ TotalDepend_funct <- function (){
   names(df)[names(df)==inputColumn] <-'y'
   model_pop <- prophet(yearly.seasonality=TRUE)
   model_pop <- fit.prophet(model_pop,df)
-  future_pop <- make_future_dataframe(model_pop, periods= 30, freq ='year')
+  future_pop <- make_future_dataframe(model_pop, periods= 15, freq ='year')
   tail(future_pop)
   
   #forecast 
@@ -68,7 +68,7 @@ OldAgeDepend_funct <- function ( ){
   names(df)[names(df)==inputColumn] <-'y'
   model_pop <- prophet(yearly.seasonality=TRUE)
   model_pop <- fit.prophet(model_pop,df)
-  future_pop <- make_future_dataframe(model_pop, periods= 30, freq ='year')
+  future_pop <- make_future_dataframe(model_pop, periods= 15, freq ='year')
   tail(future_pop)
   
   #forecast 
