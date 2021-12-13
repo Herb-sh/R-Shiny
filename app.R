@@ -11,6 +11,7 @@ required_packages<-c("rio",
                      "viridis",
                      #"hrbrthemes",
                      
+                     "gridExtra",
                      "prophet",
                      "readxl",
                      "DT"
