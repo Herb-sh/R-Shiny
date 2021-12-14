@@ -9,17 +9,19 @@ required_packages<-c("rio",
                      "zoo",
                      "gganimate",
                      "viridis",
-                     "hrbrthemes",
+                     #"hrbrthemes",
                      
+                     "gridExtra",
                      "prophet",
-                     "readxl"
+                     "readxl",
+                     "DT"
                     )
 
 # try to load packages and install missing ones
 for (package in required_packages) {
    # require tries to load a package, and returns a boolean indicating success
    if (!require(package, character.only = TRUE)) {
-      install.packages(package , dependencies = TRUE)
+      install.packages(package, dependencies = TRUE)
       library(package, character.only = TRUE)
    }
 }

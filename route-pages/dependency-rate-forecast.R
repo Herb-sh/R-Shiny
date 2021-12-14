@@ -6,13 +6,17 @@ dependencyRateForecastReady <- function(input, output, session, clicks) {
   })
   
   observeEvent(input$dependencyRateType, {
-    if (input$dependencyRateType == "dependency-rate-old") {
+    if(input$dependencyRateType == "dependency-rate-young") {
       output$populationAgeForecast = renderPlot({
-        OldAgeDepend_funct()
+        getDependencyRatePlot('young', 'Year', 'Abhängigenquotient', 'green')
       })
-    } else {
+    } else if (input$dependencyRateType == "dependency-rate-old") {
       output$populationAgeForecast = renderPlot({
-        TotalDepend_funct()
+        getDependencyRatePlot('old', 'Year', 'Altenquotient', 'orange')
+      })
+    } else if (input$dependencyRateType == "dependency-rate-total") {
+      output$populationAgeForecast = renderPlot({
+        getDependencyRatePlot('total', 'Year', 'Abhängigenquotient', 'blue')
       })
     }
   })

@@ -1,6 +1,3 @@
-#install.packages("gridExtra")
-library(gridExtra)
-
 # 1.0 READ MULTIPLE EXCEL SHEETS ----
 path   <- 'data/Rente_All.xlsx'
 sheet_names <- excel_sheets(path)
@@ -54,11 +51,11 @@ populationAgeForecast <- function (inputColumn){
   #Plot forecast
   pp <- plot(model_pop, forecast_pop, title='FORECAST', xlab='Year',  ylab=(inputColumn)) 
   
-
- 
-   ###---------------------------
+  
+  
+  ###---------------------------
   # Performing the projection on historical data to determine the accuracy of the forecast
-
+  
   df_error<- head(df,20)
   model_error <- prophet(yearly.seasonality=TRUE, montly.seasonality=TRUE)
   model_error<- fit.prophet(model_error,df_error)
@@ -75,17 +72,17 @@ populationAgeForecast <- function (inputColumn){
   names(err_df)[names(err_df)=='yhat'] <-'Predicted'
   
   #ERROR RSME CALCULAION
-
+  
   se<- (err_df$Actual - err_df$Predicted)
   se<-head(se,-1)
   rmse <- round(sqrt(mean((se)^2)), digits =2)
   
   #PLOT
   err<-ggplot(err_df, aes(Year)) +  
-  geom_line(aes(y=Predicted, colour="red"), size=2) +  # first layer
-  geom_line(aes(y=Actual, colour="purple"), size=2) +
-  xlab('Year') + ylab(inputColumn) +
-  ggtitle(sprintf("Prophet Prediction Performance \\
+    geom_line(aes(y=Predicted, colour="red"), size=2) +  # first layer
+    geom_line(aes(y=Actual, colour="purple"), size=2) +
+    xlab('Year') + ylab(inputColumn) +
+    ggtitle(sprintf("Prophet Prediction Performance \\
                   Forecast vs Actual RMSE: %f",rmse)) +
     scale_color_identity(name = "Model fit",
                          breaks = c("red", "purple"),
@@ -94,11 +91,3 @@ populationAgeForecast <- function (inputColumn){
   
   return(grid.arrange(pp, err, ncol=1))
 }
-
-
-
-
-
-
-
-

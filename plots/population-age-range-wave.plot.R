@@ -18,8 +18,8 @@ populationAgeRangeWavePlot <- function(currentYear) {
       paste(format(round(n/1000000, 2), decimal.mark=","), "m", sep="")
       #formatC(n, format="f", big.mark=",", digits=0)
     }) +
-    scale_fill_viridis(discrete = T) +
-    theme_ipsum() 
+    scale_fill_viridis(discrete = T)# +
+    #theme_ipsum() 
   
   return(ggplotly(plot))
 }
