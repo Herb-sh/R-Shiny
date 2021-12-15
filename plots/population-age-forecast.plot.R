@@ -14,7 +14,7 @@ LifeExpentency <-list_all[[5]]
 Fertility <-list_all[[6]]
 
 
-### SELECT an MERGE THIS DATA INTO ONE DATA FRAME:
+### SELECT and MERGE THIS DATA INTO ONE DATA FRAME:
 Germ_total <- filter(German_pop, Gender=='Total', Age=='Total')
 Germ_total <- Germ_total %>% select (!c("Country", 'Gender', 'Age'))
 Immigration <- Immigration %>% select (!c("Growth Rate")) 
@@ -31,6 +31,7 @@ df = Germ_total%>% inner_join(Fertility,by="Year") %>%
 
 populationAgeForecast <- function (inputColumn){
   
+  #inputColumn = "Fertility Rate"
   
   df<- df %>% select(c('Year',inputColumn))                                        
   df$Year <- str_c(df$Year,"01", '01', sep='-')
@@ -49,10 +50,12 @@ populationAgeForecast <- function (inputColumn){
   tail(forecast_pop[c('ds','yhat','yhat_lower','yhat_upper')])
   
   #Plot forecast
-  pp <- plot(model_pop, forecast_pop, title='FORECAST', xlab='Year',  ylab=(inputColumn)) 
+
+ # pp <- plot(model_pop, forecast_pop, xlab="Year", ylab=inputColumn)
+ # pp1 <-pp+ title(main="My Title")
   
-  
-  
+  pp <- dyplot.prophet(model_pop,forecast_pop, main =sprintf('FORECAST: %s', inputColumn)) 
+ 
   ###---------------------------
   # Performing the projection on historical data to determine the accuracy of the forecast
   
@@ -77,17 +80,20 @@ populationAgeForecast <- function (inputColumn){
   se<-head(se,-1)
   rmse <- round(sqrt(mean((se)^2)), digits =2)
   
-  #PLOT
-  err<-ggplot(err_df, aes(Year)) +  
-    geom_line(aes(y=Predicted, colour="red"), size=2) +  # first layer
-    geom_line(aes(y=Actual, colour="purple"), size=2) +
-    xlab('Year') + ylab(inputColumn) +
-    ggtitle(sprintf("Prophet Prediction Performance \\
-                  Forecast vs Actual RMSE: %f",rmse)) +
-    scale_color_identity(name = "Model fit",
-                         breaks = c("red", "purple"),
-                         labels = c("Predicted", "Actual"),
-                         guide = "legend")
+
+#library(plotly)
+#library(tidyr)
+# library(plyr)
+#library(manipulateWidget)
   
-  return(grid.arrange(pp, err, ncol=1))
+  err_df <- as.data.frame(err_df)
+  fig_err <- plot_ly(data =err_df, y = ~Predicted, x= ~Year, type = 'scatter', mode = 'lines', name ="Predicted" )
+  fig_err <- fig_err %>% add_trace( y= ~ Actual, name = "Actual")
+  fig_err <- fig_err %>% layout(
+                 title =sprintf("Prophet Model Evaluation -RMSE: %f",rmse),
+                 #plot_bgcolor = "#e5ecf6",
+                yaxis = list(title = inputColumn),
+                legend=list(title=list(text='<b> PROPHET MODEL </b>')))
+  
+  return( combineWidgets(ncol =2,  pp, fig_err))
 }

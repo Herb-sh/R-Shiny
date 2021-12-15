@@ -94,18 +94,5 @@ return (plot(ggplot_gtable(qq2)))
 }
 
 #***********************************************************************************
-#*
-#*library      
-#df  %>%
-  #group_by(id) %>%
-#  plot_time_series(
-#    .date_var = Year,
-#    .value    = Population,
-#    .facet_ncol = 3, 
-#    .interactive =TRUE)
-
-
-# I need a drop dowm menu with the names of the columns 
-#choice = columns_names
-#{{plotOutput("employmentRate")}}
+ 
  
