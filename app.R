@@ -14,7 +14,8 @@ required_packages<-c("rio",
                      "gridExtra",
                      "prophet",
                      "readxl",
-                     "DT"
+                     "DT",
+                     "manipulateWidget"
                     )
 
 # try to load packages and install missing ones

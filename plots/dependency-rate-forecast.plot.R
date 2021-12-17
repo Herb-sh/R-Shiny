@@ -24,7 +24,7 @@ YOUNG_depend <- mutate(YOUNG_depend, Population = Population.x - Population.y) %
 # FORECASTING TOTAL DEPENDENCY RATES
 
 getDependencyRatePlot <- function (metric, xlab, ylab, col){
-  
+
   df <- Total_depend
   
   if (metric == 'old') {
@@ -53,9 +53,45 @@ getDependencyRatePlot <- function (metric, xlab, ylab, col){
   
   
   #Plot and  Estimates
-  pp <- plot(model_pop, forecast_pop) + 
-        geom_point(col = col) +  xlab(xlab) +theme_bw()+ ylab(ylab)
-
+  # pp <- plot(model_pop, forecast_pop) + 
+  #       geom_point(col = col) +  xlab(xlab) +theme_bw()+ ylab(ylab)
+  pp <-dyplot.prophet(model_pop,forecast_pop, main =sprintf('FORECAST: %s', metric)) 
   
-  return (plot(ggplot_gtable(ggplot_build(pp))))
+  
+  
+  #******************************************************************************
+  # Performing the projection on historical data to determine the accuracy of the forecast
+  
+  df_error<- head(df,20)
+  model_error <- prophet(yearly.seasonality=TRUE, montly.seasonality=TRUE)
+  model_error<- fit.prophet(model_error,df_error)
+  future_error <- make_future_dataframe(model_error, periods= 11, freq ='year')
+  tail(future_error)
+  
+  forecast_error <- predict(model_error, future_error)
+  # merge the actual data with the predicted data
+  forecast_error$Actual <-df$y
+  tail(forecast_error[c('ds','yhat','yhat_lower','yhat_upper','Actual')])
+  
+  err_df<- forecast_error %>% select ( 'ds', 'yhat','Actual')
+  names(err_df)[names(err_df)=='ds'] <-'Year'
+  names(err_df)[names(err_df)=='yhat'] <-'Predicted'
+  
+  #ERROR RSME CALCULAION
+  
+  se<- (err_df$Actual - err_df$Predicted)
+  se<-head(se,-1)
+  rmse <- round(sqrt(mean((se)^2)), digits =2)
+  
+  
+  err_df <- as.data.frame(err_df)
+  fig_err <- plot_ly(data =err_df, y = ~Predicted, x= ~Year, type = 'scatter', mode = 'lines', name ="Predicted" )
+  fig_err <- fig_err %>% add_trace( y= ~ Actual, name = "Actual") %>% 
+    layout(
+      title =sprintf("Prophet Model Evaluation -RMSE: %f",rmse),
+      #plot_bgcolor = "#e5ecf6",
+      yaxis = list(title = metric),
+      legend=list(title=list(text='<b> PROPHET MODEL </b>')))
+  
+  return(combineWidgets(ncol = 2,  pp, fig_err))
 }
