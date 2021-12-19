@@ -1,11 +1,7 @@
 # 1.0 READ MULTIPLE EXCEL SHEETS ----
-path   <- 'data/Rente_All.xlsx'
-sheet_names <- excel_sheets(path)
 
 
 # 2.0 INVESTIGATE DATA FOR EACH SHEET ----
-
-list_all <- lapply(sheet_names, function(x) {as.data.frame(read_excel(path= path, sheet=x))})
 German_pop <- list_all[[1]]
 Employed_all <- list_all[[2]]
 Employed = subset(Employed_all, select = c(`Year`,`Employed`))
@@ -85,7 +81,7 @@ populationAgeForecast <- function (inputColumn){
   fig_err <- plot_ly(data =err_df, y = ~Predicted, x= ~Year, type = 'scatter', mode = 'lines', name ="Predicted" )
   fig_err <- fig_err %>% add_trace( y= ~ Actual, name = "Actual") %>% 
              layout(
-              title = sprintf("Prophet Model Evaluation -RMSE: %f",rmse), 
+              title = sprintf("Prophet Model Evaluation RMSE: %f",rmse), 
               yaxis = list(title = inputColumn),
               legend=list(title=list(text='<b> PROPHET MODEL </b>')))
   

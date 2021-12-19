@@ -9,6 +9,10 @@ populationFile <- import("data/historical_population.csv",
                     #quote="",
                     sep=",")
 
+excelPath <- 'data/population.xlsx'
+excelNames <- excel_sheets(excelPath)
+list_all <- lapply(excelNames, function(x) {as.data.frame(read_excel(path= excelPath, sheet=x))})
+
 population <- populationFile %>%
   select(Gender, MetricCode, Metric, Year, Value)
 

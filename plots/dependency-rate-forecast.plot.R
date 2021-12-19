@@ -1,11 +1,7 @@
 # 1.0 READ MULTIPLE EXCEL SHEETS ----
-path   <- 'data/Rente_All.xlsx'
-sheet_names <- excel_sheets(path)
 
 
 # 2.0 CREATING OLD AND TOTAL DEPENDENCY DATASETS ----
-
-list_all <- lapply(sheet_names, function(x) {as.data.frame(read_excel(path= path, sheet=x))})
 German_population  <- list_all[[1]]
 
 # Total dependency ratio ((<20 & 65+) / 20-64)
@@ -88,7 +84,7 @@ getDependencyRatePlot <- function (metric, xlab, ylab, col){
   fig_err <- plot_ly(data =err_df, y = ~Predicted, x= ~Year, type = 'scatter', mode = 'lines', name ="Predicted" )
   fig_err <- fig_err %>% add_trace( y= ~ Actual, name = "Actual") %>% 
     layout(
-      title =sprintf("Prophet Model Evaluation -RMSE: %f",rmse),
+      title =sprintf("Prophet Model Evaluation RMSE: %f",rmse),
       #plot_bgcolor = "#e5ecf6",
       yaxis = list(title = metric),
       legend=list(title=list(text='<b> PROPHET MODEL </b>')))
