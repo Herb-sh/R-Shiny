@@ -24,9 +24,7 @@ YOUNG_depend <- mutate(YOUNG_depend, Population = Population.x - Population.y) %
 # FORECASTING TOTAL DEPENDENCY RATES
 
 getDependencyRatePlot <- function (metric, xlab, ylab, col){
-  
- # metric="old"
-  
+
   df <- Total_depend
   
   if (metric == 'old') {
@@ -55,9 +53,9 @@ getDependencyRatePlot <- function (metric, xlab, ylab, col){
   
   
   #Plot and  Estimates
- # pp <- plot(model_pop, forecast_pop) + 
- #       geom_point(col = col) +  xlab(xlab) +theme_bw()+ ylab(ylab)
-  pp <-dyplot.prophet(model_pop,forecast_pop, main =sprintf('FORECAST: %s', inputColumn)) 
+  # pp <- plot(model_pop, forecast_pop) + 
+  #       geom_point(col = col) +  xlab(xlab) +theme_bw()+ ylab(ylab)
+  pp <-dyplot.prophet(model_pop,forecast_pop, main =sprintf('FORECAST: %s', metric)) 
   
   
   
@@ -88,14 +86,12 @@ getDependencyRatePlot <- function (metric, xlab, ylab, col){
   
   err_df <- as.data.frame(err_df)
   fig_err <- plot_ly(data =err_df, y = ~Predicted, x= ~Year, type = 'scatter', mode = 'lines', name ="Predicted" )
-  fig_err <- fig_err %>% add_trace( y= ~ Actual, name = "Actual")
-  fig_err <- fig_err %>% layout(
-    title =sprintf("Prophet Model Evaluation -RMSE: %f",rmse),
-    #plot_bgcolor = "#e5ecf6",
-    yaxis = list(title = metric),
-    legend=list(title=list(text='<b> PROPHET MODEL </b>')))
+  fig_err <- fig_err %>% add_trace( y= ~ Actual, name = "Actual") %>% 
+    layout(
+      title =sprintf("Prophet Model Evaluation -RMSE: %f",rmse),
+      #plot_bgcolor = "#e5ecf6",
+      yaxis = list(title = metric),
+      legend=list(title=list(text='<b> PROPHET MODEL </b>')))
   
-  
-  return(combineWidgets(ncol =2,  pp, fig_err))
-
+  return(combineWidgets(ncol = 2,  pp, fig_err))
 }

@@ -11,11 +11,11 @@ required_packages<-c("rio",
                      "viridis",
                      #"hrbrthemes",
                      
-                    # "gridExtra",
+                     "gridExtra",
                      "prophet",
                      "readxl",
                      "DT",
-                    'manipulateWidget'
+                     "manipulateWidget"
                     )
 
 # try to load packages and install missing ones

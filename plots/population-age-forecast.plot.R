@@ -50,12 +50,12 @@ populationAgeForecast <- function (inputColumn){
   tail(forecast_pop[c('ds','yhat','yhat_lower','yhat_upper')])
   
   #Plot forecast
-
- # pp <- plot(model_pop, forecast_pop, xlab="Year", ylab=inputColumn)
- # pp1 <-pp+ title(main="My Title")
+  
+  # pp <- plot(model_pop, forecast_pop, xlab="Year", ylab=inputColumn)
+  # pp1 <-pp+ title(main="My Title")
   
   pp <- dyplot.prophet(model_pop,forecast_pop, main =sprintf('FORECAST: %s', inputColumn)) 
- 
+  
   ###---------------------------
   # Performing the projection on historical data to determine the accuracy of the forecast
   
@@ -80,20 +80,14 @@ populationAgeForecast <- function (inputColumn){
   se<-head(se,-1)
   rmse <- round(sqrt(mean((se)^2)), digits =2)
   
-
-#library(plotly)
-#library(tidyr)
-# library(plyr)
-#library(manipulateWidget)
   
   err_df <- as.data.frame(err_df)
   fig_err <- plot_ly(data =err_df, y = ~Predicted, x= ~Year, type = 'scatter', mode = 'lines', name ="Predicted" )
-  fig_err <- fig_err %>% add_trace( y= ~ Actual, name = "Actual")
-  fig_err <- fig_err %>% layout(
-                 title =sprintf("Prophet Model Evaluation -RMSE: %f",rmse),
-                 #plot_bgcolor = "#e5ecf6",
-                yaxis = list(title = inputColumn),
-                legend=list(title=list(text='<b> PROPHET MODEL </b>')))
+  fig_err <- fig_err %>% add_trace( y= ~ Actual, name = "Actual") %>% 
+             layout(
+              title = sprintf("Prophet Model Evaluation -RMSE: %f",rmse), 
+              yaxis = list(title = inputColumn),
+              legend=list(title=list(text='<b> PROPHET MODEL </b>')))
   
-  return( combineWidgets(ncol =2,  pp, fig_err))
+  return(combineWidgets(ncol =2,  pp, fig_err))
 }
