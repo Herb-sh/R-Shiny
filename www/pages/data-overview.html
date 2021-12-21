@@ -1,1 +1,56 @@
-{{DT::dataTableOutput("table")}}
+<section>
+   <div class="card">
+      <div class="card-body">
+      
+      <div class="row py-3">
+        <div class="col-3 offset-9">
+            <select id="dataOverviewChange" class="form-select">
+                 <option value="all">Alles</option>
+                 <option value="POP_GR">Annual growth rate of total population</option>
+                 
+                 <option disabled>Dependency ratio</option>
+                 <option value="TOTD20-64">Total dependency ratio ((<20 & 65+) / 20-64)</option>
+                 <option value="OAD15-64">Old age dependency ratio (65 and over/15-64)</option>
+                 
+                 <option disabled>Share of population by age range</option>
+                 <option value="LESS_15_SHARE">Share of under 15 - children</option>
+                 <option value="15-24_SHARE">Share of 15 to 24 - youth</option>
+                 <option value="15-64_SHARE">Share of 15 to 64 - working age</option>
+                 <option value="65_OVER_SHARE">Share of 65 and over - elderly</option>
+                 
+                 <option disabled>Population by age range</option>
+                 <option value="LESS_20">Under 20</option>
+                 <option value="15-64">15 to 64</option>
+                 <option value="20-64">20 to 64</option>
+                 <option value="50_OVER">50 and over</option>
+                 <option value="65_OVER">65 and over</option>
+                 
+                 <option disabled>Population by age group</option>
+                 <option value="TOTAL">Total</option>
+                 <option value="0_4">0 to 4</option>
+                 <option value="5_9">5 to 9</option>
+                 <option value="10_14">10 to 14</option>
+                 <option value="15_19">15 to 19</option>
+                 <option value="20_24">20 to 24</option>
+                 <option value="25_29">25 to 29</option>
+                 <option value="30_34">30 to 34</option>
+                 <option value="35_39">35 to 39</option>
+                 <option value="40_44">40 to 44</option>
+                 <option value="45_49">45 to 49</option>
+                 <option value="50_54">50 to 54</option>
+                 <option value="55_59">55 to 59</option>
+                 <option value="60_64">60 to 64</option>
+                 <option value="65_69">65 to 69</option>
+                 <option value="70_74">70 to 74</option>
+                 <option value="75_79">75 to 79</option>
+                 <option value="80_84">80 to 84</option>
+                 <option value="85_OVER">Abhängigenquotient</option>
+            </select>
+        </div>
+      </div>
+      
+      {{DT::dataTableOutput("table")}}
+      
+      </div>
+      </div>
+</section>

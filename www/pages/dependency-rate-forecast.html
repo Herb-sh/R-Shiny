@@ -3,7 +3,12 @@
           <div class="card-body">
             <h5 class="card-title">
               <div class="row">
-                <div class="col-3 offset-9 population-dropdown">
+                <div class="col-9">
+                <!--  <p class="small fst-italic">
+                    Der Abhängigenquotient ist ein Begriff aus der Demografie. Er gibt das Verhältnis der Anzahl von Personen, die nicht im Erwerbstätigenalter sind, zur Anzahl von Personen im Erwerbstätigenalter in einer Gesellschaft an.
+                  </p> -->
+                </div>
+                <div class="col-3 population-dropdown">
                     <select id="populationMetricChange" class="form-select">
                       <!--<option value="Population" >Population</option>-->
                       <option value="Fertility Rate">Fertility Rate</option>
@@ -11,13 +16,13 @@
                     </select>
                 </div>
                 
-                <div class="col-3 offset-9 migration-dropdown">
+                <div class="col-3 migration-dropdown">
                     <select id="metricChange" class="form-select">
                       <option value="Net Migration Rate">Einwanderung</option>
                     </select>
                 </div>
                 
-                <div class="col-3 offset-9 dependency-rate-dropdown">
+                <div class="col-3 dependency-rate-dropdown">
                     <select id="dependencyRateType" class="form-select">
                       <option value="dependency-rate-total">Abhängigenquotient</option>
                       <option value="dependency-rate-young">Jugendquotient</option>
