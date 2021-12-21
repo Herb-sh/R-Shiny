@@ -9,7 +9,6 @@ required_packages<-c("rio",
                      "zoo",
                      "gganimate", #
                      "viridis",
-                     #"hrbrthemes",
                      
                      "gridExtra",
                      "prophet",
@@ -62,9 +61,7 @@ router <- make_router(
    default = route("/", page(htmlTemplate("www/pages/dashboard.html"), ""), dashboardReady),
    route("data-overview", page(htmlTemplate("www/pages/data-overview.html"), "Datenübersicht"), dataOverviewReady),
    route("population", page(htmlTemplate("www/pages/population.html"), "Bevölkerungsentwicklung"), populationReady),
-   #route("population-forecast", page(htmlTemplate("www/pages/population-forecast.html"), "Bevölkerung Prognose"), populationForecastReady),
    route("migration", page(htmlTemplate("www/pages/migration.html"), "Einwanderung"), migrationReady),
-   #route("migration-forecast",  page(htmlTemplate("www/pages/migration-forecast.html"), "Einwanderung Prognose"), migrationForecastReady),
    route("dependency-rate",  page(htmlTemplate("www/pages/dependency-rate.html"), "Abhängigenquotient"), dependencyRateReady),
    route("dependency-rate-forecast",  page(htmlTemplate("www/pages/dependency-rate-forecast.html"), "Abhängigenquotient Prognose"), dependencyRateForecastReady),
    route("faq", page(htmlTemplate("www/pages/faq.html"), "FAQ"), NaN),
