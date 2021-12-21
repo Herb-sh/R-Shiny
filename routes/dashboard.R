@@ -9,7 +9,7 @@ dashboardReady <- function(input, output, session, clicks) {
   totalPopulationPrev <- totalPopulation %>% filter(Gender=="Total", Year == lastYear-1) %>% select(Value) %>% sum()
   
   output$totalPopulation = renderText({
-    paste(format(round(totalPopulationLast/1000000, 2), decimal.mark=","), "Millionen", sep="")
+    paste(format(round(totalPopulationLast/1000000, 2), decimal.mark=","), "M", sep="")
   })
   
   output$increase = renderText({
