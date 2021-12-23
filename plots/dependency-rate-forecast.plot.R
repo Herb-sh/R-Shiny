@@ -6,7 +6,7 @@ sheet_names <- excel_sheets(path)
 # 2.0 CREATING OLD AND TOTAL DEPENDENCY DATASETS ----
 
 list_all <- lapply(sheet_names, function(x) {as.data.frame(read_excel(path= path, sheet=x))})
-German_population  <- list_all[[1]]
+German_pop  <- list_all[[1]]
 
 # Total dependency ratio ((<20 & 65+) / 20-64)
 Total_depend <- filter(German_pop, Gender=='Total', Age=='Total dependency ratio ((<20 & 65+) / 20-64)')
@@ -17,6 +17,7 @@ Total_depend  <- Total_depend  %>% select (!c("Country", 'Gender', 'Age'))
 OLD_depend <- filter(German_pop, Gender=='Total', Age=='Old age dependency ratio (65 and over/15-64)')
 OLD_depend <- OLD_depend %>% select (!c("Country", 'Gender', 'Age'))
 
+# Young age dependency ratio ( less than 20 )
 YOUNG_depend <- merge(x = Total_depend, y = OLD_depend, by = "Year")
 YOUNG_depend <- mutate(YOUNG_depend, Population = Population.x - Population.y) %>% select(Year, Population)
 
@@ -26,11 +27,14 @@ YOUNG_depend <- mutate(YOUNG_depend, Population = Population.x - Population.y) %
 getDependencyRatePlot <- function (metric, xlab, ylab, col){
 
   df <- Total_depend
+  graphLabel='Gesamtanteil der abhängigen Bevölkerung (%)'
   
   if (metric == 'old') {
     df <- OLD_depend
+    graphLabel = 'Anteil der Altergruppe (>65) an der Gesamtbevölkerung (%)'
   } else if (metric == 'young') {
     df <- YOUNG_depend
+    graphLabel = 'Anteil der Altergruppe (<20) an der Gesamtbevölkerung (%)'
   }
   
   inputColumn = "Population"
@@ -42,6 +46,7 @@ getDependencyRatePlot <- function (metric, xlab, ylab, col){
   
   names(df)[names(df)=='Year'] <-'ds'
   names(df)[names(df)==inputColumn] <-'y'
+  
   model_pop <- prophet(yearly.seasonality=TRUE)
   model_pop <- fit.prophet(model_pop, df)
   future_pop <- make_future_dataframe(model_pop, periods= 15, freq ='year')
@@ -53,9 +58,8 @@ getDependencyRatePlot <- function (metric, xlab, ylab, col){
   
   
   #Plot and  Estimates
-  # pp <- plot(model_pop, forecast_pop) + 
-  #       geom_point(col = col) +  xlab(xlab) +theme_bw()+ ylab(ylab)
-  pp <-dyplot.prophet(model_pop,forecast_pop, main =sprintf('FORECAST: %s', metric)) 
+  pp <-dyplot.prophet(model_pop,forecast_pop, main =sprintf('FORECAST'), ylab = graphLabel, xlab='Year')
+ 
   
   
   
@@ -73,7 +77,7 @@ getDependencyRatePlot <- function (metric, xlab, ylab, col){
   forecast_error$Actual <-df$y
   tail(forecast_error[c('ds','yhat','yhat_lower','yhat_upper','Actual')])
   
-  err_df<- forecast_error %>% select ( 'ds', 'yhat','Actual')
+  err_df<- forecast_error %>% select ('ds', 'yhat','Actual')
   names(err_df)[names(err_df)=='ds'] <-'Year'
   names(err_df)[names(err_df)=='yhat'] <-'Predicted'
   
@@ -86,12 +90,12 @@ getDependencyRatePlot <- function (metric, xlab, ylab, col){
   
   err_df <- as.data.frame(err_df)
   fig_err <- plot_ly(data =err_df, y = ~Predicted, x= ~Year, type = 'scatter', mode = 'lines', name ="Predicted" )
-  fig_err <- fig_err %>% add_trace( y= ~ Actual, name = "Actual") %>% 
+  fig_err <- fig_err %>% add_trace(y= ~ Actual,mode='lines', name = "Actual") %>% 
     layout(
-      title =sprintf("Prophet Model Evaluation -RMSE: %f",rmse),
+      title =sprintf("Bewertung des Vorhersagemodells, RMSE: %f",rmse),
       #plot_bgcolor = "#e5ecf6",
-      yaxis = list(title = metric),
-      legend=list(title=list(text='<b> PROPHET MODEL </b>')))
+      yaxis = list(title = graphLabel),
+      legend=list(title=list(text='<b> MODELL_PROPHET </b>')))
   
   return(combineWidgets(ncol = 2,  pp, fig_err))
 }

@@ -134,7 +134,33 @@
   
   const sideNav = document.getElementById("sidebar-nav");
   if (sideNav) {
-      window.addEventListener('hashchange', menuState);
+      window.addEventListener('hashchange', hashChanged);
+  }
+  
+  function hashChanged(event) {
+    dependencyDropdowns(event);
+    menuState(event);
+  }
+  
+  function dependencyDropdowns(event) {
+    var pageWrapper = document.getElementById('router-page-wrapper');
+    if (event.newURL && event.newURL.indexOf('dependency-rate-forecast?population') !== -1) {
+      //document.getElementById('populationMetricChange').value = 'Fertility Rate';
+      pageWrapper.setAttribute('class', 'forecast-population');
+      Shiny.setInputValue('populationMetricChange', 'Fertility Rate', {priority: "event"})
+      
+    } else if (event.newURL && event.newURL.indexOf('dependency-rate-forecast?migration') !== -1) {
+      //document.getElementById('metricChange').value = 'Net Migration Rate';
+      pageWrapper.setAttribute('class', 'forecast-migration');
+      
+      Shiny.setInputValue('metricChange', 'Net Migration Rate', {priority: "event"})
+      
+    } else if (event.newURL && event.newURL.indexOf('dependency-rate-forecast?dependency') !== -1) {
+      //document.getElementById('dependencyRateType').value = 'dependency-rate-total';
+      pageWrapper.setAttribute('class', 'forecast-dependency');
+      
+      Shiny.setInputValue('dependencyRateType', 'dependency-rate-total', {priority: "event"})
+    }
   }
  
      function menuState(event) {

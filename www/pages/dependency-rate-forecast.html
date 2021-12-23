@@ -3,28 +3,30 @@
           <div class="card-body">
             <h5 class="card-title">
               <div class="row">
-                <!--<div class="col-6">
-                  Abhängigenquotient Prognose
-                </div> -->
-                <div class="col-3 offset-6">
-                    <select id="metricChange" class="form-select">
-                      <!--<option value="Population" >Population - to be removed from this page</option>-->
-                      <option value="Net Migration Rate">Net Migration Rate</option>
+                <div class="col-3 offset-9 population-dropdown">
+                    <select id="populationMetricChange" class="form-select">
+                      <!--<option value="Population" >Population</option>-->
                       <option value="Fertility Rate">Fertility Rate</option>
-                      <option value="LifeExpentency (year)">LifeExpentency (year)</option>
+                      <option value="LifeExpentency (year)">LifeExpentency</option>
                     </select>
                 </div>
-                <div class="col-3">
+                
+                <div class="col-3 offset-9 migration-dropdown">
+                    <select id="metricChange" class="form-select">
+                      <option value="Net Migration Rate">Einwanderung</option>
+                    </select>
+                </div>
+                
+                <div class="col-3 offset-9 dependency-rate-dropdown">
                     <select id="dependencyRateType" class="form-select">
-                      <option value="dependency-rate-total" selected>Abhängigenquotient</option>
+                      <option value="dependency-rate-total">Abhängigenquotient</option>
                       <option value="dependency-rate-young">Jugendquotient</option>
                       <option value="dependency-rate-old">Altenquotient </option>
                     </select>
                 </div>
-                
               </div>
             </h5>
-            {{combineWidgetsOutput("populationAgeForecast")}}
+            {{combineWidgetsOutput("dependencyRateForecast")}}
           </div>
         </div>
 </section>
