@@ -29,7 +29,6 @@ for (package in required_packages) {
 # Plots
 source("plots/utilities/population.service.R")
 source('plots/migration.plot.R')
-source('plots/employment-rate.plot.R')
 source('plots/population-age-group.plot.R')
 source('plots/population-age-range.plot.R')
 source('plots/population-age-forecast.plot.R')

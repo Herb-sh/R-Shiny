@@ -1,9 +1,6 @@
 ### Import packages
 library(rio)
 library(tidyverse)
-library(zoo)
-#
-
 populationFile <- import("data/historical_population.csv", 
                     encoding = "UTF-8", 
                     #quote="",

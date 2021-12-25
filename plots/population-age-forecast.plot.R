@@ -1,56 +1,59 @@
-# 1.0 READ MULTIPLE EXCEL SHEETS ----
-
-
-# 2.0 INVESTIGATE DATA FOR EACH SHEET ----
-German_pop <- list_all[[1]]
-Employed_all <- list_all[[2]]
-Employed = subset(Employed_all, select = c(`Year`,`Employed`))
-Immigration <- list_all[[4]]
-LifeExpentency <-list_all[[5]]
-Fertility <-list_all[[6]]
+populationDataFrame <- list_all[[1]]
+employedAll <- list_all[[2]]
+employed = subset(employedAll, select = c(`Year`,`Employed`))
+immigration <- list_all[[4]]
+lifeExpentency <-list_all[[5]]
+fertility <-list_all[[6]]
 
 
 ### SELECT and MERGE THIS DATA INTO ONE DATA FRAME:
-Germ_total <- filter(German_pop, Gender=='Total', Age=='Total')
+Germ_total <- filter(populationDataFrame, Gender=='Total', Age=='Total')
 Germ_total <- Germ_total %>% select (!c("Country", 'Gender', 'Age'))
-Immigration <- Immigration %>% select (!c("Growth Rate")) 
+immigration <- immigration %>% select (!c("Growth Rate")) 
 
-df = Germ_total%>% inner_join(Fertility,by="Year") %>%
-  inner_join(LifeExpentency, by='Year') %>%
-  inner_join( Immigration, by='Year')
+df = Germ_total%>% inner_join(fertility,by="Year") %>%
+  inner_join(lifeExpentency, by='Year') %>%
+  inner_join( immigration, by='Year')
 
-
+df$Population<- round((df$Population)/1000000,2)
 
 
 #********BUILDING FUNCTION***************************************************#
 #*******A.FORCASTING POPULATION STRUCTURE UNTIL 2050 USING PROPHET***********#
 
-populationAgeForecast <- function (inputColumn){
+populationAgeForecast <- function (InputColumn){
+
+  if (InputColumn == 'Fertility Rate'){
+    plot_tilte='FORECAST: Fertilitätsrate'
+  }else if (InputColumn == 'LifeExpentency (year)') {
+    plot_tilte='FORECAST: Durchschnittliche Lebenserwartung'
+  }else if (InputColumn == "Net Migration Rate" ){
+    plot_tilte='FORECAST: Ein- und Auswandereungszahl pro Jahr.'
+  }else if (InputColumn == "Population") {
+    plot_tilte='FORECAST: Gesamtbevölkerungszahl (Million)'
+  }
   
-  #inputColumn = "Fertility Rate"
+  graphLabel=InputColumn
   
-  df<- df %>% select(c('Year',inputColumn))                                        
+  df<- df %>% select(c('Year',InputColumn))                                        
   df$Year <- str_c(df$Year,"01", '01', sep='-')
   df$Year <- as.Date(c(df$Year))
   
   names(df)[names(df)=='Year'] <-'ds'
-  names(df)[names(df)==inputColumn] <-'y'
+  names(df)[names(df)==InputColumn] <-'y'
   
-  model_pop <- prophet(yearly.seasonality=TRUE)
-  model_pop <- fit.prophet(model_pop,df)
-  future_pop <- make_future_dataframe(model_pop, periods= 10, freq ='year')
+  model_pop1 <- prophet(yearly.seasonality=TRUE)
+  model_pop1 <- fit.prophet(model_pop1,df)
+  future_pop <- make_future_dataframe(model_pop1, periods= 10, freq ='year')
   tail(future_pop)
   
   #forecast 
-  forecast_pop <- predict(model_pop, future_pop)
+  forecast_pop <- predict(model_pop1, future_pop)
   tail(forecast_pop[c('ds','yhat','yhat_lower','yhat_upper')])
   
   #Plot forecast
+  pp <-dyplot.prophet(model_pop1,forecast_pop, main =sprintf(plot_tilte), ylab = graphLabel, xlab='Year')
   
-  # pp <- plot(model_pop, forecast_pop, xlab="Year", ylab=inputColumn)
-  # pp1 <-pp+ title(main="My Title")
-  
-  pp <- dyplot.prophet(model_pop,forecast_pop, main =sprintf('FORECAST: %s', inputColumn)) 
   
   ###---------------------------
   # Performing the projection on historical data to determine the accuracy of the forecast
@@ -80,10 +83,10 @@ populationAgeForecast <- function (inputColumn){
   err_df <- as.data.frame(err_df)
   fig_err <- plot_ly(data =err_df, y = ~Predicted, x= ~Year, type = 'scatter', mode = 'lines', name ="Predicted" )
   fig_err <- fig_err %>% add_trace( y= ~ Actual, name = "Actual") %>% 
-             layout(
-              title = sprintf("Prophet Model Evaluation RMSE: %f",rmse), 
-              yaxis = list(title = inputColumn),
-              legend=list(title=list(text='<b> PROPHET MODEL </b>')))
+    layout(
+      title = sprintf("Bewertung des Vorhersagemodells, RMSE: %f",rmse), 
+      yaxis = list(title = plot_tilte),
+      legend=list(title=list(text='<b> MODELL_PROPHET </b>')))
   
   return(combineWidgets(ncol =2,  pp, fig_err))
 }
