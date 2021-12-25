@@ -19,14 +19,12 @@ youngDepend <- mutate(youngDepend, Population = Population.x - Population.y) %>%
 getDependencyRatePlot <- function (metric, xlab, ylab, col){
   
   df <- totalDepend
-  graphLabel='Gesamtanteil der abängigen Bevölkerung (%)'
+  graphLabel='Bevölkerungsanteil (%)'
   
   if (metric == 'old') {
     df <- oldDepend
-    graphLabel = 'Anteil der Altergruppe (>65) an der Gesamtbevölkerung (%)'
   } else if (metric == 'young') {
     df <- youngDepend
-    graphLabel = 'Anteil der Altergruppe (<20) an der Gesamtbevölkerung (%)'
   }
   
   inputColumn = "Population"

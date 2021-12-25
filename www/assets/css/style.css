@@ -31,20 +31,21 @@
   background: #ffecdf;
 }
 
-.population-dropdown, .migration-dropdown, .dependency-rate-dropdown {
+.population-dropdown, .migration-dropdown, .dependency-rate-dropdown,
+.tooltip-population, .tooltip-migration, .tooltip-dependency{
   display: none;
 }
 
-.forecast-population .population-dropdown {
-  display: block;
+.forecast-population .population-dropdown, .forecast-population .tooltip-population{
+  display: inline-block;
 }
 
-.forecast-migration .migration-dropdown {
-  display: block;
+.forecast-migration .migration-dropdown, .forecast-migration .tooltip-migration {
+  display: inline-block;
 }
 
-.forecast-dependency .dependency-rate-dropdown {
-  display: block;
+.forecast-dependency .dependency-rate-dropdown, .forecast-dependency .tooltip-dependency {
+  display: inline-block;
 }
 
 /* Loader */

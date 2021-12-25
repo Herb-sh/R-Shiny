@@ -3,22 +3,38 @@
           <div class="card-body">
             <h5 class="card-title">
               <div class="row">
-                <div class="col-9">
-                <!--  <p class="small fst-italic">
-                    Der Abhängigenquotient ist ein Begriff aus der Demografie. Er gibt das Verhältnis der Anzahl von Personen, die nicht im Erwerbstätigenalter sind, zur Anzahl von Personen im Erwerbstätigenalter in einer Gesellschaft an.
-                  </p> -->
+                <div class="col-3 offset-6 text-right">
+                  <i class="text-primary tooltip-population bi bi-info-circle-fill" 
+                  data-bs-toggle="tooltip"data-bs-placement="right" data-bs-html="true" title="
+                  <b>Die Fertilitätsrate</b> ist ein in der Demografie verwendetes Maß, das angibt, wie viele Kinder eine Frau durchschnittlich im Laufe des Lebens hätte.
+                  <br>
+                  <br>
+                  <b>Die Lebenserwartung</b> ist die im Durchschnitt zu erwartende Zeitspanne, die einem Lebewesen ab einem gegebenen Zeitpunkt bis zu seinem Tod verbleibt, wobei bestimmte Annahmen über die Sterberaten zugrunde gelegt werden.
+                  "></i>
+                  
+                  <i class="text-primary tooltip-migration bi bi-info-circle-fill"
+                  data-bs-toggle="tooltip" data-bs-placement="right"
+                  data-bs-original-title="Die Migrationsrate beschreibt die Ein- oder Auswanderung der Bevölkerung eines Landes."></i>
+                  
+                  <i class="text-primary tooltip-dependency bi bi-info-circle-fill" 
+                  data-bs-toggle="tooltip"data-bs-placement="right" data-bs-html="true" title="<b>Der Abhängigenquotient</b> ist ein Begriff aus der Demografie. Er gibt das Verhältnis der Anzahl von Personen, die nicht im Erwerbstätigenalter sind, zur Anzahl von Personen im Erwerbstätigenalter in einer Gesellschaft an.
+<br><br>
+                  <b>Der Altenquotient</b> gibt das Verhältnis der Anzahl älterer Menschen zur Anzahl jüngerer Menschen in einer Gesellschaft an und wird üblicherweise genauer als das Verhältnis der Anzahl von Personen, die nicht mehr im Erwerbstätigenalter sind, zur Anzahl von Personen im Erwerbstätigenalter definiert.
+<br><br>
+                  <b>Der Jugendquotient</b> stellt die zweite Komponente dar und gibt entsprechend das Verhältnis der Anzahl von Personen, die noch nicht im Erwerbstätigenalter sind, zur Anzahl von Personen im Erwerbstätigenalter an."></i>
+                  <span class="fs-6">Datenkennzahlen</span>
                 </div>
                 <div class="col-3 population-dropdown">
                     <select id="populationMetricChange" class="form-select">
                       <option value="LifeExpentency (year)">Lebenserwartung</option>
                       <option value="Fertility Rate">Fertilitätsrate</option>
-                      <option value="Population" >Population</option>
+                      <option value="Population" >Gesamtbevölkerungszahl</option>
                     </select>
                 </div>
                 
                 <div class="col-3 migration-dropdown">
                     <select id="metricChange" class="form-select">
-                      <option value="Net Migration Rate">Einwanderung</option>
+                      <option value="Net Migration Rate">Migrationsrate</option>
                     </select>
                 </div>
                 

@@ -7,7 +7,7 @@ required_packages<-c("rio",
                      "plotly",
                      "shiny.router",
                      "zoo",
-                     "gganimate", #
+                     "gganimate",
                      "viridis",
                      
                      "gridExtra",
@@ -60,9 +60,9 @@ router <- make_router(
    default = route("/", page(htmlTemplate("www/pages/dashboard.html"), ""), dashboardReady),
    route("data-overview", page(htmlTemplate("www/pages/data-overview.html"), "Datenübersicht"), dataOverviewReady),
    route("population", page(htmlTemplate("www/pages/population.html"), "Bevölkerungsentwicklung"), populationReady),
-   route("migration", page(htmlTemplate("www/pages/migration.html"), "Einwanderung"), migrationReady),
-   route("dependency-rate",  page(htmlTemplate("www/pages/dependency-rate.html"), ""), dependencyRateReady), # Abhängigenquotient
-   route("dependency-rate-forecast",  page(htmlTemplate("www/pages/dependency-rate-forecast.html"), "Abhängigenquotient Prognose"), dependencyRateForecastReady),
+   route("migration", page(htmlTemplate("www/pages/migration.html"), "Migrationsrate"), migrationReady),
+   route("dependency-rate",  page(htmlTemplate("www/pages/dependency-rate.html"), "Abhängigenquotient"), dependencyRateReady),
+   route("dependency-rate-forecast",  page(htmlTemplate("www/pages/dependency-rate-forecast.html"), ""), dependencyRateForecastReady), # Abhängigenquotient Prognose
    route("faq", page(htmlTemplate("www/pages/faq.html"), "FAQ"), NaN),
    page_404 = page404(
       message404 = "Sorry, we could not display this page!"
