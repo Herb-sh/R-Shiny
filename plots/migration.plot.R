@@ -1,4 +1,7 @@
 # Authors: Herbi Shtini & Anitta Weiss
+source("utilities.R")
+
+
 migration <- import("data/migration.csv", 
                     encoding = "UTF-8", 
                     quote="")
@@ -20,7 +23,7 @@ plotMigration <- function () {
   plot <- ggplot(netMigrationTotalFormat, 
                  aes(x=years, y=Insgesamt,
                      text=paste("Jahr: ", years, "<br>Bevölkerungszahl: ", formatC(Insgesamt, format="f", big.mark=",", digits=0)))) +
-    geom_line(aes(x=years, y=fiveYearAverage, group = 1), stat="identity") +
+    #geom_line(aes(x=years, y=fiveYearAverage, group = 1), stat="identity") +
     geom_segment( aes(x=years, xend=years, y=0, yend=Insgesamt, color = color), size=8, alpha=0.9) +
     scale_colour_identity() +
     theme_light() +
