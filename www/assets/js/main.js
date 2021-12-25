@@ -144,21 +144,18 @@
   
   function dependencyDropdowns(event) {
     var pageWrapper = document.getElementById('router-page-wrapper');
+    var title = document.querySelectorAll('.pagetitle h1');
+    
     if (event.newURL && event.newURL.indexOf('dependency-rate-forecast?population') !== -1) {
-      //document.getElementById('populationMetricChange').value = 'Fertility Rate';
       pageWrapper.setAttribute('class', 'forecast-population');
-      Shiny.setInputValue('populationMetricChange', 'Fertility Rate', {priority: "event"})
+      Shiny.setInputValue('populationMetricChange', 'LifeExpentency (year)', {priority: "event"})
       
     } else if (event.newURL && event.newURL.indexOf('dependency-rate-forecast?migration') !== -1) {
-      //document.getElementById('metricChange').value = 'Net Migration Rate';
       pageWrapper.setAttribute('class', 'forecast-migration');
-      
       Shiny.setInputValue('metricChange', 'Net Migration Rate', {priority: "event"})
       
     } else if (event.newURL && event.newURL.indexOf('dependency-rate-forecast?dependency') !== -1) {
-      //document.getElementById('dependencyRateType').value = 'dependency-rate-total';
       pageWrapper.setAttribute('class', 'forecast-dependency');
-      
       Shiny.setInputValue('dependencyRateType', 'dependency-rate-total', {priority: "event"})
     }
   }
@@ -171,6 +168,7 @@
           link.classList.remove(className);
           
           var linkHash = (link.href.split("#!/")[1] || "");
+          console.log(linkHash, hash)
           if (linkHash !== hash  && link.className.split(" ").indexOf(className) === -1) { //
             link.classList.add(className)
           }

@@ -49,6 +49,6 @@ dependencyRateReady <- function(input, output, session, clicks) {
   })
   
   observeEvent(input$goToForecast, {
-    change_page("dependency-rate-forecast")
+    change_page("/dependency-rate-forecast?dependency")
   })
 }

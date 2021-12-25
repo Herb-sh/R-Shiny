@@ -26,6 +26,8 @@ for (package in required_packages) {
    }
 }
 
+# Authors: Herbi Shtini & Anitta Weiss
+
 # Plots
 source("plots/utilities/population.service.R")
 source('plots/migration.plot.R')
@@ -44,8 +46,6 @@ source('routes/dependency-rate-forecast.R')
 source('routes/migration.R')
 source('routes/migration-forecast.R')
 
-# Configs
-#options(shiny.port = 4200)
 
 page <- function(body, title) {
    return(fluidPage(
@@ -61,7 +61,7 @@ router <- make_router(
    route("data-overview", page(htmlTemplate("www/pages/data-overview.html"), "Datenübersicht"), dataOverviewReady),
    route("population", page(htmlTemplate("www/pages/population.html"), "Bevölkerungsentwicklung"), populationReady),
    route("migration", page(htmlTemplate("www/pages/migration.html"), "Einwanderung"), migrationReady),
-   route("dependency-rate",  page(htmlTemplate("www/pages/dependency-rate.html"), "Abhängigenquotient"), dependencyRateReady),
+   route("dependency-rate",  page(htmlTemplate("www/pages/dependency-rate.html"), ""), dependencyRateReady), # Abhängigenquotient
    route("dependency-rate-forecast",  page(htmlTemplate("www/pages/dependency-rate-forecast.html"), "Abhängigenquotient Prognose"), dependencyRateForecastReady),
    route("faq", page(htmlTemplate("www/pages/faq.html"), "FAQ"), NaN),
    page_404 = page404(
@@ -69,7 +69,7 @@ router <- make_router(
    )
 )
 
-# Make output for our router in main UI of Shiny app.
+# Generating UI with dynamic current page content in it(router$ui).
 ui <- shinyUI(fluidPage(
    tags$html(
       tags$head <- htmlTemplate("www/parts/head.html"),

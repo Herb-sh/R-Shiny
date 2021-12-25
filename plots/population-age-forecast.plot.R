@@ -24,13 +24,13 @@ df$Population<- round((df$Population)/1000000,2)
 populationAgeForecast <- function (InputColumn){
 
   if (InputColumn == 'Fertility Rate'){
-    plot_tilte='FORECAST: Fertilitätsrate'
+    plot_tilte='Prognose: Fertilitätsrate'
   }else if (InputColumn == 'LifeExpentency (year)') {
-    plot_tilte='FORECAST: Durchschnittliche Lebenserwartung'
+    plot_tilte='Prognose: Durchschnittliche Lebenserwartung'
   }else if (InputColumn == "Net Migration Rate" ){
-    plot_tilte='FORECAST: Ein- und Auswandereungszahl pro Jahr.'
+    plot_tilte='Prognose: Ein- und Auswandereungszahl pro Jahr.'
   }else if (InputColumn == "Population") {
-    plot_tilte='FORECAST: Gesamtbevölkerungszahl (Million)'
+    plot_tilte='Prognose: Gesamtbevölkerungszahl (Million)'
   }
   
   graphLabel=InputColumn

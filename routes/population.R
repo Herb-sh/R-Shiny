@@ -39,4 +39,9 @@ populationReady <- function(input, output, session, clicks) {
     rvg$timer = reactiveTimer(Inf)
     rvg$timer = function() {return(0)}
   })
+  
+  # Redirection
+  observeEvent(input$goToPopulationForecast, {
+    change_page("/dependency-rate-forecast?population")
+  })
 }
