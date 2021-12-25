@@ -1,3 +1,4 @@
+# Authors: Anitta Weiss & Herbi Shtini
 options(repos = list(CRAN="http://cran.rstudio.com/"))
 ### Install required packages
 required_packages<-c("rio",

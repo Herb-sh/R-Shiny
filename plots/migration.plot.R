@@ -1,6 +1,4 @@
-source("utilities.R")
-
-
+# Authors: Herbi Shtini & Anitta Weiss
 migration <- import("data/migration.csv", 
                     encoding = "UTF-8", 
                     quote="")

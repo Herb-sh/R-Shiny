@@ -1,3 +1,4 @@
+# Authors: Herbi Shtini & Anitta Weiss
 populationDataFrame <- list_all[[1]]
 employedAll <- list_all[[2]]
 employed = subset(employedAll, select = c(`Year`,`Employed`))

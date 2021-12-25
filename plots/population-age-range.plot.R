@@ -1,5 +1,4 @@
-library(plotly)
-
+# Authors: Herbi Shtini & Anitta Weiss
 ageRange <- getPopulationByAgeRange()
 
 

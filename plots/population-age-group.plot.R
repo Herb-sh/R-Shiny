@@ -1,6 +1,4 @@
-library(plotly)
-library(gganimate)
-
+# Authors: Herbi Shtini & Anitta Weiss
 colorRed = "#d14956"
 colorBlue= "#466a99"
 

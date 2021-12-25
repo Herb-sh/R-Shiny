@@ -1,3 +1,4 @@
+# Authors: Herbi Shtini & Anitta Weiss
 dependencyRateForecastReady <- function(input, output, session, clicks) {
   observeEvent(input$metricChange, {
     output$dependencyRateForecast = renderCombineWidgets({

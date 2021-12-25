@@ -1,3 +1,4 @@
+# Authors: Herbi Shtini & Anitta Weiss
 startYear <- 1990
 endYear <- 2020
 

@@ -1,3 +1,4 @@
+# Authors: Herbi Shtini & Anitta Weiss
 populationDataFrame  <- list_all[[1]]
 
 # Total dependency ratio ((<20 & 65+) / 20-64)

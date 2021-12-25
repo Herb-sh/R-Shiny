@@ -1,3 +1,4 @@
+# Authors: Herbi Shtini & Anitta Weiss
 dashboardReady <- function(input, output, session, clicks) {
   totalPopulation <- getPopulationByAgeGroup()
   dependencyRate <- getDependencyRate()

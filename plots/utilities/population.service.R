@@ -1,6 +1,5 @@
+# Authors: Herbi Shtini & Anitta Weiss
 ### Import packages
-library(rio)
-library(tidyverse)
 populationFile <- import("data/historical_population.csv", 
                     encoding = "UTF-8", 
                     #quote="",

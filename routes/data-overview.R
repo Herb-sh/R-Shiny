@@ -1,3 +1,4 @@
+# Authors: Herbi Shtini & Anitta Weiss
 dataOverviewReady <- function(input, output, session, clicks) {
   
   observeEvent(input$dataOverviewChange, {
